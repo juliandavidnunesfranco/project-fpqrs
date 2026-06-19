@@ -1,0 +1,22 @@
+## Archivo que indica a Git qué archivos o directorios deben ser ignorados en el repositorio.
+## Ignora archivos temporales, de configuración y otros que no son necesarios para el proyecto.
+## Ejemplo: variables de entorno, archivos de configuración local, archivos de compilación, etc.
+
+## Ignorar archivos de entorno 
+.DS_Store
+.env
+.env.local
+
+## Ignorar archivos de configuración de IDEs
+.vscode/
+.idea/  
+
+## Ignorar archivos de compilación y dependencias
+## aunque en este proyecto no se utilicen, es común ignorar estas carpetas en proyectos de JavaScript/Node.js
+node_modules/
+dist/
+build/
+
+## Ignorar archivos de logs
+logs/
+*.log
