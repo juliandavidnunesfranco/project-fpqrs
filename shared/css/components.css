@@ -1,0 +1,395 @@
+/* ============================================
+   components.css
+   Estilos de piezas reutilizables entre vistas: el sidebar
+   completo (generado por sidebar.js), badges de estado/SLA,
+   y utilidades visuales comunes.
+
+   Carga DESPUÉS de Bootstrap, variables.css y reset.css,
+   y ANTES del .css específico de cada página — así el CSS
+   de cada página puede sobreescribir esto si hace falta,
+   sin pelear con !important.
+   ============================================ */
+
+
+/* ============================================
+   SIDEBAR — contenedor general
+   ============================================ */
+
+#sidebar-contenedor {
+  position: relative;
+  width: var(--sidebar-ancho);
+  flex-shrink: 0;
+  background-color: var(--color-marino-800);
+  color: var(--color-texto-claro);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --------------------------------------------
+   Fila del logo + botón toggle
+   -------------------------------------------- */
+.sidebar-logo-fila {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-sm);
+  padding: var(--espaciado-lg) var(--espaciado-md);
+  position: relative;
+}
+
+.sidebar-logo-icono {
+  font-size: 1.5rem;
+  color: #5fb8a3; /* verde-azulado del ícono de escudo en la captura */
+}
+
+.sidebar-logo-texto {
+  font-size: var(--texto-lg);
+  font-weight: var(--peso-bold);
+  color: var(--color-texto-claro);
+}
+
+.sidebar-toggle-btn {
+  margin-left: auto;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radio-borde-circulo);
+  background-color: var(--color-texto-claro);
+  color: var(--color-marino-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--texto-sm);
+  transition: transform var(--transicion-base);
+}
+
+.sidebar-toggle-btn:hover {
+  background-color: var(--color-texto-claro-tenue);
+}
+
+/* Cuando el sidebar está colapsado, la flecha apunta al lado contrario */
+#sidebar-contenedor.colapsado .sidebar-toggle-btn i {
+  transform: rotate(180deg);
+}
+
+
+/* --------------------------------------------
+   Secciones de navegación ("Operación" / "Administración")
+   -------------------------------------------- */
+.sidebar-seccion {
+  padding: var(--espaciado-sm) var(--espaciado-md);
+}
+
+.sidebar-titulo-seccion {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semibold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-texto-claro-tenue);
+  padding: var(--espaciado-sm) var(--espaciado-sm) var(--espaciado-xs);
+}
+
+.sidebar-seccion ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+
+/* --------------------------------------------
+   Links de navegación (habilitados y deshabilitados)
+   -------------------------------------------- */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-sm);
+  padding: 10px var(--espaciado-sm);
+  border-radius: var(--radio-borde);
+  font-size: var(--texto-sm);
+  color: var(--color-texto-claro-tenue);
+  transition: background-color var(--transicion-rapida), color var(--transicion-rapida);
+}
+
+.sidebar-link i {
+  font-size: 1rem;
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--color-texto-claro);
+}
+
+.sidebar-link-activo {
+  background-color: var(--color-marino-700);
+  color: var(--color-texto-claro);
+  font-weight: var(--peso-medio);
+}
+
+.sidebar-link-deshabilitado {
+  color: var(--color-texto-claro-debil);
+  cursor: not-allowed;
+}
+
+.sidebar-link-deshabilitado:hover {
+  background-color: transparent;
+  color: var(--color-texto-claro-debil);
+}
+
+/* --------------------------------------------
+   Badge numérico circular rojo (ej: "5" junto a Bandeja)
+   -------------------------------------------- */
+.sidebar-badge {
+  margin-left: auto;
+  background-color: var(--color-badge-fondo);
+  color: var(--color-badge-texto);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semibold);
+  min-width: 20px;
+  height: 20px;
+  border-radius: var(--radio-borde-circulo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+}
+
+
+/* --------------------------------------------
+   Fila de notificaciones (ícono + texto, sin botón aparte)
+   -------------------------------------------- */
+.sidebar-notificaciones-fila {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-sm);
+  padding: var(--espaciado-md);
+  font-size: var(--texto-sm);
+  color: var(--color-texto-claro-tenue);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.sidebar-notificaciones-fila:hover {
+  color: var(--color-texto-claro);
+}
+
+
+/* --------------------------------------------
+   Sección de usuario (avatar + nombre + rol)
+   -------------------------------------------- */
+.sidebar-usuario {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-sm);
+  padding: var(--espaciado-sm) var(--espaciado-md);
+}
+
+.sidebar-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radio-borde-circulo);
+  background-color: var(--color-marino-700);
+  color: var(--color-texto-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--peso-semibold);
+  font-size: var(--texto-sm);
+  flex-shrink: 0;
+}
+
+.sidebar-usuario-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  overflow: hidden;
+}
+
+.sidebar-usuario-nombre {
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+  color: var(--color-texto-claro);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-usuario-rol {
+  font-size: var(--texto-xs);
+  color: var(--color-texto-claro-tenue);
+}
+
+.sidebar-usuario-vacio {
+  padding: var(--espaciado-md);
+  font-size: var(--texto-sm);
+  color: var(--color-texto-claro-debil);
+}
+
+/* --------------------------------------------
+   Botón de cerrar sesión
+   -------------------------------------------- */
+.sidebar-logout {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-sm);
+  width: 100%;
+  padding: var(--espaciado-sm) var(--espaciado-md);
+  font-size: var(--texto-sm);
+  color: var(--color-texto-claro-tenue);
+  text-align: left;
+}
+
+.sidebar-logout:hover {
+  color: var(--color-texto-claro);
+}
+
+
+/* --------------------------------------------
+   Responsive: en pantallas chicas el sidebar se oculta
+   por defecto y el toggle lo muestra/oculta por completo
+   (a diferencia de desktop, donde solo colapsa a íconos).
+   -------------------------------------------- */
+@media (max-width: 991.98px) {
+  #sidebar-contenedor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    transform: translateX(-100%);
+    transition: transform var(--transicion-base);
+    box-shadow: var(--sombra-card-hover);
+  }
+
+  #sidebar-contenedor:has(#sidebar.sidebar-abierto) {
+    transform: translateX(0);
+  }
+}
+
+
+/* ============================================
+   BADGES DE ESTADO / SLA / PRIORIDAD / TIPO
+   Usados en la tabla de Bandeja de Casos y en el Detalle.
+   Patrón: fondo "suave" + texto del color "fuerte".
+   ============================================ */
+
+.badge-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radio-borde-pill);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semibold);
+  white-space: nowrap;
+}
+
+.badge-estado::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radio-borde-circulo);
+  background-color: currentColor;
+}
+
+/* Variantes semánticas — se combinan con .badge-estado */
+.badge-exito {
+  background-color: var(--color-exito-suave);
+  color: var(--color-exito);
+}
+
+.badge-advertencia {
+  background-color: var(--color-advertencia-suave);
+  color: var(--color-advertencia);
+}
+
+.badge-peligro {
+  background-color: var(--color-peligro-suave);
+  color: var(--color-peligro);
+}
+
+.badge-info {
+  background-color: var(--color-info-suave);
+  color: var(--color-info);
+}
+
+.badge-neutro {
+  background-color: var(--color-neutro-suave);
+  color: var(--color-neutro);
+}
+
+/* Badges sin el punto (usados para "Tipo": Queja, Reclamo, etc.) */
+.badge-tipo {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--radio-borde-pill);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-medio);
+}
+
+
+/* ============================================
+   TARJETAS DE KPI (los 4 cards de la Bandeja de Casos)
+   ============================================ */
+
+.kpi-card {
+  background-color: var(--color-fondo-card);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde-lg);
+  padding: var(--espaciado-md);
+  box-shadow: var(--sombra-card);
+}
+
+.kpi-card-icono {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radio-borde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--texto-lg);
+  margin-bottom: var(--espaciado-sm);
+}
+
+.kpi-card-valor {
+  font-size: var(--texto-2xl);
+  font-weight: var(--peso-bold);
+  color: var(--color-texto);
+  line-height: 1.1;
+}
+
+.kpi-card-titulo {
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+  color: var(--color-texto);
+  margin-top: var(--espaciado-xs);
+}
+
+.kpi-card-descripcion {
+  font-size: var(--texto-xs);
+  color: var(--color-texto-secundario);
+}
+
+
+/* ============================================
+   UTILIDADES GENERALES
+   ============================================ */
+
+/* Foco visible accesible — nunca quitar outline sin reemplazo */
+:focus-visible {
+  outline: 2px solid var(--color-marino-600);
+  outline-offset: 2px;
+}
+
+/* Texto solo para lectores de pantalla (accesibilidad) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

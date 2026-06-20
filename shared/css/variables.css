@@ -1,0 +1,120 @@
+/* ============================================
+   variables.css —
+   variables css centralizadas del proyecto. Cambiar un
+   valor acá se propaga a todo el sitio — evita códigos
+   hex sueltos repetidos en cada archivo .css de /pages/.
+
+   Paleta confirmada contra prototipo (no inventada): azul marino del sidebar/login, 
+   rojo de alertas/badge/vencido, verde de cerrado/éxito, naranja de "próximo a vencer".
+   ============================================ */
+
+:root {
+
+  /* --------------------------------------------
+     COLOR — Marca / Sidebar / Panel de login
+     -------------------------------------------- */
+  --color-marino-900: #14233d;   /* fondo más oscuro: franja superior, logo */
+  --color-marino-800: #1a2f4a;   /* fondo base del sidebar y panel izq. login */
+  --color-marino-700: #233e5e;   /* fondo del item activo en el sidebar */
+  --color-marino-600: #2e5298;   /* botones primarios, links, "Ingresar al sistema" */
+
+  /* --------------------------------------------
+     COLOR — Texto sobre fondo oscuro (sidebar/login)
+     -------------------------------------------- */
+  --color-texto-claro: #ffffff;
+  --color-texto-claro-tenue: #aab8cc;   /* "Operación"/"Administración", subtítulos */
+  --color-texto-claro-debil: #7c8aa3;   /* texto deshabilitado sobre fondo oscuro */
+
+  /* --------------------------------------------
+     COLOR — Texto sobre fondo claro (paneles, tablas)
+     -------------------------------------------- */
+  --color-texto: #1f2937;
+  --color-texto-secundario: #6b7280;
+  --color-texto-placeholder: #9aa3af;
+
+  /* --------------------------------------------
+     COLOR — Fondos claros
+     -------------------------------------------- */
+  --color-fondo-app: #f4f5f7;     /* fondo general de las páginas internas */
+  --color-fondo-card: #ffffff;
+  --color-borde: #e2e4e9;
+  --color-borde-input: #d7dbe3;
+
+  /* --------------------------------------------
+     COLOR — Estados semánticos (SLA, badges, alertas)
+     Cada estado tiene versión "fuerte" (texto/ícono) y
+     "suave" (fondo de pill/badge), igual que se ve en
+     las capturas: texto de color sobre fondo pastel.
+     -------------------------------------------- */
+  --color-exito: #2e9e4f;
+  --color-exito-suave: #e1f5ea;
+
+  --color-advertencia: #c87f06;
+  --color-advertencia-suave: #fdf3d9;
+
+  --color-peligro: #d9534f;
+  --color-peligro-suave: #fbe9e8;
+
+  --color-info: #2e5298;
+  --color-info-suave: #e7edf9;
+
+  --color-neutro: #6b7280;
+  --color-neutro-suave: #eceef1;
+
+  /* Badge de notificación  ( 5 rojo sólido) */
+  --color-badge-fondo: #e0433d;
+  --color-badge-texto: #ffffff;
+
+  /* --------------------------------------------
+     TIPOGRAFÍA
+     -------------------------------------------- */
+  --fuente-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --texto-xs: 0.75rem;    /* 12px — labels de KPI, badges */
+  --texto-sm: 0.875rem;   /* 14px — texto de tabla, sidebar */
+  --texto-base: 1rem;     /* 16px — texto general */
+  --texto-lg: 1.125rem;   /* 18px — subtítulos */
+  --texto-xl: 1.5rem;     /* 24px — títulos de sección ("Bandeja de Casos") */
+  --texto-2xl: 2.25rem;   /* 36px — headline del login */
+
+  --peso-normal: 400;
+  --peso-medio: 500;
+  --peso-semibold: 600;
+  --peso-bold: 700;
+
+  /* --------------------------------------------
+     ESPACIADO
+     -------------------------------------------- */
+  --espaciado-xs: 4px;
+  --espaciado-sm: 8px;
+  --espaciado-md: 16px;
+  --espaciado-lg: 24px;
+  --espaciado-xl: 32px;
+  --espaciado-2xl: 48px;
+
+  /* --------------------------------------------
+     BORDES Y SOMBRAS
+     -------------------------------------------- */
+  --radio-borde-sm: 6px;
+  --radio-borde: 8px;
+  --radio-borde-lg: 12px;
+  --radio-borde-pill: 999px;   /* badges, pills de estado */
+  --radio-borde-circulo: 50%;  /* avatar, botón toggle, badge numérico */
+
+  --sombra-card: 0 1px 3px rgba(20, 35, 61, 0.08);
+  --sombra-card-hover: 0 4px 12px rgba(20, 35, 61, 0.12);
+
+  /* --------------------------------------------
+     LAYOUT — Sidebar
+     -------------------------------------------- */
+  --sidebar-ancho: 260px;
+  --sidebar-ancho-colapsado: 76px;
+
+  /* --------------------------------------------
+     TRANSICIONES
+     -------------------------------------------- */
+  --transicion-rapida: 150ms ease;
+  --transicion-base: 250ms ease;
+}
+
+/* Paleta de colores confirmada juliandev */

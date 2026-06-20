@@ -1,0 +1,75 @@
+/* ============================================
+   reset.css - CSS de reseteo
+   Normaliza comportamientos por defecto del navegador.
+
+   ORDEN DE CARGA EN EL <head>:
+   1. variables.css   (este archivo usa sus custom properties)
+   2. reset.css        (este archivo)
+   3. Bootstrap (CDN)
+   4. components.css
+   5. el .css propio de la página
+
+   Va antes de Bootstrap porque normaliza el comportamiento
+   base del navegador, y Bootstrap construye sobre eso.
+   ============================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  font-family: var(--fuente-base);
+  color: var(--color-texto);
+  background-color: var(--color-fondo-app);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, picture, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Respeta la preferencia del usuario de reducir animaciones */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
