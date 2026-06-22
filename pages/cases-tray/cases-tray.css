@@ -53,6 +53,11 @@
   flex-wrap: wrap;
 }
 
+@media (max-width: 1023.98px) {
+  #sidebar-contenedor { display: flex !important; }
+  .app-main { width: 100%; }
+}
+
 .page-titulo {
   font-size: 1.5rem;
   font-weight: 700;
@@ -489,10 +494,8 @@
    RESPONSIVE
    ============================================ */
 @media (max-width: 1023.98px) {
-  #sidebar-contenedor {
-    display: none;
-  }
-
+  /* sidebar-contenedor NO se oculta con display:none —
+     se maneja con transform en components.css (overlay mobile) */
   .app-main-inner {
     padding: 16px;
   }

@@ -1,5 +1,5 @@
 /* ============================================
-   cases-detail.css - Estilos para la página de detalle de caso
+   CASES-DETAILS.CSS
    ============================================ */
 
 .app-layout {
@@ -10,20 +10,20 @@
 }
 
 #sidebar-contenedor {
+  width: 240px;
   flex-shrink: 0;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+  z-index: 20;
+  overflow: hidden;
 }
 
-.app-main { 
-  flex: 1; 
-  min-width: 0; 
-  overflow-y: auto; 
-}
-
-.app-main-inner { 
-  padding: 24px; 
-  max-width: 1536px; 
-  margin: 0 auto; 
-}
+.app-main { flex: 1; min-width: 0; overflow-y: auto; }
+.app-main-inner { padding: 24px; max-width: 1536px; margin: 0 auto; }
 
 
 /* ============================================
@@ -543,6 +543,5 @@
    RESPONSIVE
    ============================================ */
 @media (max-width: 1023.98px) {
-  #sidebar-contenedor { display: none; }
   .app-main-inner { padding: 16px; }
 }
