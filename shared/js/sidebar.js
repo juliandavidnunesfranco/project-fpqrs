@@ -282,7 +282,7 @@ function activarToggleResponsive() {
 function renderSidebar(carpetaActiva) {
   const html = `
     <div class="sidebar-logo-fila">
-      <i class="bi bi-shield-fill-check sidebar-logo-icono" aria-hidden="true"></i>
+      <img src="../../assets/img/logo-prototipo.png" alt="" width="32" height="32" class="sidebar-logo-img">
       <span class="sidebar-logo-texto">GestorFPQRS</span>
  
       <button type="button" id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Contraer u ocultar menú de navegación" aria-expanded="true" aria-controls="sidebar">

@@ -37,10 +37,13 @@
   position: relative;
 }
 
-.sidebar-logo-icono {
-  font-size: 1.5rem;
-  color: #5fb8a3; /* verde-azulado del ícono de escudo en la captura */
+
+.sidebar-logo-img {
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
 }
+
 
 .sidebar-logo-texto {
   font-size: var(--texto-lg);

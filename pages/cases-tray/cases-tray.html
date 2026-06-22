@@ -1,11 +1,286 @@
 <!doctype html>
-<html lang="en">
+<html lang="es-CO" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Bandeja de Casos — GestorFPQRS</title>
+    <meta
+      name="description"
+      content="Gestión y seguimiento de casos FPQRS con control de SLA en tiempo real."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#1e3a5f" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../assets/img/logo-prototipo.png"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "GestorFPQRS",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "provider": { "@type": "Organization", "name": "CoopFinanzas" }
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../../shared/css/variables.css" />
+    <link rel="stylesheet" href="../../shared/css/reset.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../shared/css/components.css" />
+    <link rel="stylesheet" href="cases-tray.css" />
   </head>
   <body>
-    <h2>ESTO ES UN H2 DE PRUEBA</h2>
+    <div class="app-layout">
+      <!-- SIDEBAR -->
+      <div id="sidebar-contenedor"></div>
+
+      <!-- MAIN -->
+      <main class="app-main" id="main-content">
+        <div class="app-main-inner">
+          <!-- HEADER DE PÁGINA -->
+          <div class="page-header">
+            <div>
+              <h1 class="page-titulo">Bandeja de Casos</h1>
+              <p class="page-subtitulo">
+                Gestión de casos FPQRS — Actualizado: 07/05/2026 00:18
+              </p>
+            </div>
+            <div class="page-acciones">
+              <button type="button" class="btn-accion" id="btn-exportar">
+                <i class="bi bi-download" aria-hidden="true"></i>
+                Exportar
+              </button>
+              <button type="button" class="btn-accion" id="btn-actualizar">
+                <i class="bi bi-arrow-clockwise" aria-hidden="true"></i>
+                Actualizar
+              </button>
+            </div>
+          </div>
+
+          <!-- KPI CARDS -->
+          <div class="kpi-grid">
+            <div class="kpi-card kpi-card--primary">
+              <div class="kpi-card__header">
+                <div class="kpi-card__icono kpi-card__icono--primary">
+                  <i class="bi bi-folder" aria-hidden="true"></i>
+                </div>
+              </div>
+              <p class="kpi-card__valor kpi-card__valor--primary">125</p>
+              <p class="kpi-card__titulo">Casos activos</p>
+              <p class="kpi-card__desc">En proceso de gestión</p>
+            </div>
+
+            <div class="kpi-card kpi-card--danger">
+              <div class="kpi-card__header">
+                <div class="kpi-card__icono kpi-card__icono--danger">
+                  <i class="bi bi-exclamation-triangle" aria-hidden="true"></i>
+                </div>
+                <span class="kpi-card__pulso" aria-hidden="true"></span>
+              </div>
+              <p class="kpi-card__valor kpi-card__valor--danger">111</p>
+              <p class="kpi-card__titulo">SLA vencido</p>
+              <p class="kpi-card__desc">Requieren atención urgente</p>
+            </div>
+
+            <div class="kpi-card kpi-card--warning">
+              <div class="kpi-card__header">
+                <div class="kpi-card__icono kpi-card__icono--warning">
+                  <i class="bi bi-clock" aria-hidden="true"></i>
+                </div>
+              </div>
+              <p class="kpi-card__valor kpi-card__valor--warning">2</p>
+              <p class="kpi-card__titulo">Próximos a vencer</p>
+              <p class="kpi-card__desc">Vencen en las próximas 24 horas</p>
+            </div>
+
+            <div class="kpi-card kpi-card--success">
+              <div class="kpi-card__header">
+                <div class="kpi-card__icono kpi-card__icono--success">
+                  <i class="bi bi-check-circle" aria-hidden="true"></i>
+                </div>
+              </div>
+              <p class="kpi-card__valor kpi-card__valor--success">1</p>
+              <p class="kpi-card__titulo">Cerrados hoy</p>
+              <p class="kpi-card__desc">Resueltos en el día</p>
+            </div>
+          </div>
+
+          <!-- TABLA DE CASOS -->
+          <div class="tabla-card">
+            <!-- Barra de búsqueda y filtros -->
+            <div class="tabla-toolbar">
+              <div class="tabla-busqueda">
+                <i
+                  class="bi bi-search tabla-busqueda__icono"
+                  aria-hidden="true"
+                ></i>
+                <input
+                  type="text"
+                  id="input-busqueda"
+                  class="tabla-busqueda__input"
+                  placeholder="Buscar por radicado o nombre del asociado..."
+                  aria-label="Buscar casos"
+                />
+              </div>
+              <button type="button" class="btn-accion" id="btn-filtros">
+                <i class="bi bi-funnel" aria-hidden="true"></i>
+                Filtros
+              </button>
+            </div>
+
+            <!-- Tabla -->
+            <div class="tabla-wrapper">
+              <table class="tabla-casos" id="tabla-casos">
+                <caption class="visually-hidden">
+                  Listado de casos FPQRS con información de estado, prioridad y
+                  semáforo de SLA
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col" class="col-sortable" data-col="radicado">
+                      <span
+                        >Radicado
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i
+                      ></span>
+                    </th>
+                    <th
+                      scope="col"
+                      class="col-sortable"
+                      data-col="fechaRadicado"
+                    >
+                      <span
+                        >Fecha Rad.
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i
+                      ></span>
+                    </th>
+                    <th scope="col" class="col-sortable" data-col="tipo">
+                      <span
+                        >Tipo
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i
+                      ></span>
+                    </th>
+                    <th scope="col" class="col-sortable" data-col="servicio">
+                      <span
+                        >Servicio
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i
+                      ></span>
+                    </th>
+                    <th scope="col" class="col-sortable" data-col="categoria">
+                      <span
+                        >Categoría
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i
+                      ></span>
+                    </th>
+                    <th
+                      scope="col"
+                      class="col-sortable"
+                      data-col="subcategoria"
+                    >
+                      <span
+                        >Subcategoría
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i
+                      ></span>
+                    </th>
+                    <th scope="col" class="col-sortable" data-col="asociado">
+                      <span
+                        >Asociado
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i
+                      ></span>
+                    </th>
+                    <th scope="col" class="col-sortable" data-col="responsable">
+                      <span
+                        >Responsable
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i
+                      ></span>
+                    </th>
+                    <th scope="col" class="col-sortable" data-col="prioridad">
+                      <span
+                        >Prioridad
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i
+                      ></span>
+                    </th>
+                    <th scope="col" class="col-sortable" data-col="estado">
+                      <span
+                        >Estado
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i
+                      ></span>
+                    </th>
+                    <th scope="col" class="col-sortable" data-col="limiteSLA">
+                      <span
+                        >Límite SLA
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i
+                      ></span>
+                    </th>
+                    <th scope="col" class="col-sortable" data-col="semaforo">
+                      <span
+                        >Semáforo
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i
+                      ></span>
+                    </th>
+                    <th scope="col" class="col-accion">Acción</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody-casos">
+                  <!-- Generado dinámicamente por cases-tray.js -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Paginación -->
+            <div class="tabla-footer">
+              <div class="tabla-info">
+                <p id="texto-mostrando" class="tabla-mostrando"></p>
+                <select
+                  id="select-por-pagina"
+                  class="tabla-select-pagina"
+                  aria-label="Casos por página"
+                >
+                  <option value="10">10 por página</option>
+                  <option value="25">25 por página</option>
+                  <option value="50">50 por página</option>
+                </select>
+              </div>
+              <nav aria-label="Paginación de casos">
+                <div class="tabla-paginacion" id="contenedor-paginacion"></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../shared/js/data.js"></script>
+    <script src="../../shared/js/session.js"></script>
+    <script src="../../shared/js/sidebar.js"></script>
+    <script src="cases-tray.js"></script>
   </body>
 </html>
