@@ -41,7 +41,7 @@ function validarCredenciales(correo, password) {
    En el caso que el parametro usuario sea inválido (null, undefined o sin correo), se loguea un error y no podra acceder.
    En el caso que no se cuente con localStorage (navegador muy antiguo o modo incógnito), se loguea un error y no podra acceder adicionalmente se le notifica al usuario.
    -------------------------------------------- */
-function iniciarSesion(usuario) {
+function iniciarSesion(usuario, recordar) {
   if (!usuario || !usuario.correo) {
     console.error("Usuario inválido para iniciar sesión:", usuario);
     return;
@@ -58,16 +58,17 @@ function iniciarSesion(usuario) {
     );
     return;
   }
+  const storage = recordar ? window.localStorage : window.sessionStorage;
 
   try {
-    localStorage.setItem(CLAVE_SESSION, JSON.stringify(usuario));
+    storage.setItem(CLAVE_SESSION, JSON.stringify(usuario));
   } catch (error) {
     alert(
       "No se pudo iniciar sesión\n\n" +
-        "Ocurrió un error al guardar tu sesión.\n" +
+        "Ocurrió un error al guardar sesión.\n" +
         "Intenta en otro navegador o desactiva el modo incógnito.",
     );
-    console.error("Error al guardar la sesión en localStorage:", error);
+    console.error("Error al guardar la sesión:", error);
   }
 }
 
@@ -76,7 +77,9 @@ function iniciarSesion(usuario) {
    Devuelve el objeto usuario:{ nombre, rol, correo } o null si no hay nadie logueado.
    -------------------------------------------- */
 function obtenerSesionActiva() {
-  const data = localStorage.getItem(CLAVE_SESSION);
+  const data =
+    localStorage.getItem(CLAVE_SESSION) ||
+    sessionStorage.getItem(CLAVE_SESSION);
 
   if (!data) {
     return null;
@@ -88,8 +91,9 @@ function obtenerSesionActiva() {
     // Si por algún motivo el dato guardado está corrupto,
     // lo tratamos como si no hubiera sesión, en vez de
     // romper toda la página con un error de JSON.parse.
-    console.error("Sesión corrupta en localStorage, se ignora:", error);
+    console.error("Sesión corrupta, se ignora:", error);
     localStorage.removeItem(CLAVE_SESSION);
+    sessionStorage.removeItem(CLAVE_SESSION);
     return null;
   }
 }
@@ -103,6 +107,7 @@ function obtenerSesionActiva() {
    -------------------------------------------- */
 function cerrarSesion(rutaLogin) {
   localStorage.removeItem(CLAVE_SESSION);
+  sessionStorage.removeItem(CLAVE_SESSION);
   window.location.href = rutaLogin || "../login/login.html";
 }
 

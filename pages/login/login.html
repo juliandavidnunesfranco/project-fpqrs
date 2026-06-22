@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="es-CO" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title tal como el prototipo , Generalmente seria: "Login - GestorFPQRS"-->
+    <title>GestorFPQRS — Gestión de Casos Financieros</title>
+    <!-- Description tal como el prototipo -->
+    <meta
+      name="description"
+      content="Sistema de gestión FPQRS para entidades financieras y cooperativas. Registre, asigne y cierre casos con trazabilidad completa y control de SLA."
+    />
+    <!-- Robots se incluyen dado que se trata de un sitio web de login para una aplicación web de proceso interno en la organizacion no un sitio web público -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#1a2f4a" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../assets/img/logo-prototipo.png"
+    />
+
+    <!-- Datos estructurados -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "GestorFPQRS",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "Sistema de gestión de casos FPQRS para entidades financieras y cooperativas con control de SLA.",
+        "provider": { "@type": "Organization", "name": "CoopFinanzas" }
+      }
+    </script>
+
+    <!-- Tipografía real del prototipo (extraída del DOM via DevTools) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS: orden importa — variables antes que reset, Bootstrap antes de shared y por ultimo lo propio -->
+    <link rel="stylesheet" href="../../shared/css/variables.css" />
+    <link rel="stylesheet" href="../../shared/css/reset.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../shared/css/components.css" />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="login-layout">
+      <!-- ============================================
+         PANEL IZQUIERDO: marca + features
+         ============================================ -->
+      <section
+        class="login-panel-marca"
+        aria-label="Información de la plataforma"
+      >
+        <div class="login-marca-logo">
+          <img
+            src="../../assets/img/logo-prototipo.png"
+            alt=""
+            width="50"
+            height="50"
+            class="login-logo-img"
+          />
+          <span>GestorFPQRS</span>
+        </div>
+
+        <h1 class="login-marca-titulo">Gestión inteligente de casos FPQRS</h1>
+
+        <p class="login-marca-descripcion">
+          Plataforma corporativa para la administración, seguimiento y
+          resolución de casos de atención al asociado con trazabilidad completa
+          y control de SLA.
+        </p>
+
+        <ul class="login-features">
+          <li class="login-feature">
+            <span class="login-feature-icono"
+              ><i class="bi bi-shield-check" aria-hidden="true"></i
+            ></span>
+            <div>
+              <p class="login-feature-titulo">Gestión integral FPQRS</p>
+              <p class="login-feature-descripcion">
+                Control total de Felicitaciones, Peticiones, Quejas, Reclamos y
+                Sugerencias
+              </p>
+            </div>
+          </li>
+          <li class="login-feature">
+            <span class="login-feature-icono"
+              ><i class="bi bi-clock-history" aria-hidden="true"></i
+            ></span>
+            <div>
+              <p class="login-feature-titulo">Monitoreo de SLA</p>
+              <p class="login-feature-descripcion">
+                Semáforo en tiempo real para cumplimiento de tiempos de
+                respuesta
+              </p>
+            </div>
+          </li>
+          <li class="login-feature">
+            <span class="login-feature-icono"
+              ><i class="bi bi-people" aria-hidden="true"></i
+            ></span>
+            <div>
+              <p class="login-feature-titulo">Asignación automática</p>
+              <p class="login-feature-descripcion">
+                Responsables y prioridades asignados según parámetros
+                configurados
+              </p>
+            </div>
+          </li>
+          <li class="login-feature">
+            <span class="login-feature-icono"
+              ><i class="bi bi-bar-chart-line" aria-hidden="true"></i
+            ></span>
+            <div>
+              <p class="login-feature-titulo">Trazabilidad completa</p>
+              <p class="login-feature-descripcion">
+                Historial detallado de cada acción realizada sobre los casos
+              </p>
+            </div>
+          </li>
+        </ul>
+
+        <footer class="login-marca-footer">
+          <p>&copy; 2026 CoopFinanzas. Todos los derechos reservados.</p>
+          <p>Sistema de Gestión FPQRS v2.4.1 — Normativa SFC Colombia</p>
+        </footer>
+      </section>
+
+      <!-- ============================================
+         PANEL DERECHO: formulario de login
+         ============================================ -->
+      <section
+        class="login-panel-form"
+        aria-label="Formulario de inicio de sesión"
+      >
+        <div class="login-mini-logo">
+          <img
+            src="../../assets/img/logo-prototipo.png"
+            alt=""
+            width="28"
+            height="28"
+            class="login-logo-img"
+          />
+          <span>GestorFPQRS</span>
+        </div>
+
+        <div class="login-form-contenedor">
+          <h2 class="login-form-titulo">Iniciar sesión</h2>
+          <p class="login-form-subtitulo">
+            Ingrese sus credenciales para acceder al sistema
+          </p>
+
+          <form id="form-login" novalidate>
+            <div class="mb-3">
+              <label for="correo" class="form-label">Correo electrónico</label>
+              <input
+                type="email"
+                id="correo"
+                name="correo"
+                class="form-control"
+                placeholder="usuario@coopfinanzas.com.co"
+                autocomplete="username"
+                required
+              />
+              <div class="invalid-feedback"></div>
+              <!--clase de bootstrap.-->
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <div class="login-password-wrapper">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  class="form-control"
+                  placeholder="••••••••••"
+                  autocomplete="current-password"
+                  required
+                />
+                <button
+                  type="button"
+                  id="btn-toggle-password"
+                  class="login-password-toggle"
+                  aria-label="Mostrar contraseña"
+                  aria-pressed="false"
+                >
+                  <i class="bi bi-eye" aria-hidden="true"></i>
+                </button>
+              </div>
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="login-form-opciones">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  id="recordar-sesion"
+                  class="form-check-input"
+                />
+                <label for="recordar-sesion" class="form-check-label"
+                  >Recordar sesión</label
+                >
+              </div>
+              <a href="#" class="login-link-olvido">¿Olvidó su contraseña?</a>
+            </div>
+
+            <div
+              id="mensaje-error-login"
+              class="alert alert-danger d-none"
+              role="alert"
+            ></div>
+
+            <button type="submit" class="btn login-btn-ingresar">
+              Ingresar al sistema
+            </button>
+          </form>
+
+          <!-- ============================================
+             CUENTAS DE DEMOSTRACIÓN
+             ============================================ -->
+          <div class="login-cuentas-demo">
+            <div class="login-cuentas-demo-header">
+              <p class="login-cuentas-demo-titulo">CUENTAS DE DEMOSTRACIÓN</p>
+              <p class="login-cuentas-demo-subtitulo">
+                Haga clic en una fila para autocompletar el formulario
+              </p>
+            </div>
+
+            <ul id="lista-cuentas-demo" class="login-cuentas-demo-lista">
+              <!-- Las 3 filas se generan dinámicamente con login.js,
+                 leyendo cuentasDemo desde data.js, para no duplicar
+                 esos datos a mano en el HTML. -->
+            </ul>
+          </div>
+
+          <p class="login-nota-acceso">
+            Sistema de uso interno. Acceso restringido a personal autorizado.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================================
+       SCRIPTS — el orden importa: cada uno depende
+       del anterior (ver comentarios en cada archivo)
+       ============================================ -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../shared/js/data.js"></script>
+    <script src="../../shared/js/session.js"></script>
+    <script src="../../shared/js/validations.js"></script>
+    <script src="login.js"></script>
+  </body>
+</html>

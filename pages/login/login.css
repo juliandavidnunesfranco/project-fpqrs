@@ -1,0 +1,330 @@
+/* ============================================
+   LOGIN.CSS
+   Estilos específicos de la vista de login. Carga DESPUÉS
+   de Bootstrap y componentes.css, así puede sobreescribir
+   lo que necesite sin pelear con !important.
+   ============================================ */
+
+.login-layout {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* ============================================
+   PANEL IZQUIERDO — marca y features
+   ============================================ */
+
+.login-panel-marca {
+  display: flex;
+  flex-direction: column;
+  /* Ancho fijo en px, confirmado contra las clases reales
+     del prototipo: lg:w-[520px] xl:w-[600px]. No es un
+     porcentaje — por eso usamos valores fijos + un breakpoint
+     extra para pantallas grandes (ver media query al final). */
+  width: 520px;
+  flex-shrink: 0;
+  background-color: var(--color-marino-800);
+  color: var(--color-texto-claro);
+  padding: var(--espaciado-2xl);
+}
+
+.login-marca-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-sm);
+  font-size: var(--texto-lg);
+  font-weight: var(--peso-bold);
+  margin-bottom: var(--espaciado-2xl);
+}
+
+.login-logo-img {
+  display: block;
+  object-fit: contain;
+}
+
+.login-marca-titulo {
+  font-size: var(--texto-2xl);
+  font-weight: var(--peso-bold);
+  line-height: 1.2;
+  max-width: 480px;
+  margin-bottom: var(--espaciado-md);
+}
+
+.login-marca-descripcion {
+  color: var(--color-texto-claro-tenue);
+  max-width: 460px;
+  margin-bottom: var(--espaciado-xl);
+}
+
+.login-features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-lg);
+  flex-grow: 1;
+}
+
+.login-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espaciado-md);
+}
+
+.login-feature-icono {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radio-borde);
+  background-color: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--texto-lg);
+}
+
+.login-feature-titulo {
+  font-weight: var(--peso-semibold);
+  margin-bottom: 2px;
+}
+
+.login-feature-descripcion {
+  font-size: var(--texto-sm);
+  color: var(--color-texto-claro-tenue);
+}
+
+.login-marca-footer {
+  font-size: var(--texto-xs);
+  color: var(--color-texto-claro-debil);
+  margin-top: var(--espaciado-xl);
+}
+
+.login-marca-footer p {
+  margin-bottom: 2px;
+}
+
+
+/* ============================================
+   PANEL DERECHO — formulario
+   ============================================ */
+.login-panel-form {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaciado-2xl);
+  background-color: var(--color-fondo-app);
+  overflow-y: auto;
+}
+
+.login-mini-logo {
+  display: none;
+}
+
+.login-form-contenedor {
+  width: 100%;
+  max-width: 440px;
+  padding: 0 var(--espaciado-md);
+}
+
+.login-form-titulo {
+  font-size: var(--texto-xl);
+  font-weight: var(--peso-normal);   /* Iniciar sesion: liviano, no bold. */
+  margin-bottom: var(--espaciado-xs);
+}
+
+.login-form-subtitulo {
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-sm);
+  margin-bottom: var(--espaciado-lg);
+}
+
+/* --------------------------------------------
+   Campo de contraseña con botón de mostrar/ocultar
+   -------------------------------------------- */
+
+.login-password-wrapper {
+  position: relative;
+}
+
+.login-password-wrapper .form-control {
+  padding-right: 40px;
+}
+
+.login-password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-base);
+}
+
+.login-password-toggle:hover {
+  color: var(--color-texto);
+}
+
+/* --------------------------------------------
+   Fila de "Recordar sesión" + link de olvidó contraseña
+   -------------------------------------------- */
+.login-form-opciones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--espaciado-md);
+}
+
+.login-link-olvido {
+  font-size: var(--texto-sm);
+  color: var(--color-marino-600);
+}
+
+.login-link-olvido:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------
+   Botón de submit
+   -------------------------------------------- */
+.login-btn-ingresar {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--color-marino-800);
+  color: var(--color-texto-claro);
+  border-radius: var(--radio-borde);
+  font-weight: var(--peso-medio);
+  transition: background-color var(--transicion-rapida);
+}
+
+.login-btn-ingresar:hover {
+  background-color: var(--color-marino-700);
+}
+
+
+/* ============================================
+   CUENTAS DE DEMOSTRACIÓN
+   ============================================ */
+
+.login-cuentas-demo {
+  margin-top: var(--espaciado-xl);
+  background-color: var(--color-fondo-card);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde-lg);
+  overflow: hidden;
+}
+
+.login-cuentas-demo-header {
+  background-color: var(--color-fondo-app);
+  border-bottom: 1px solid var(--color-borde);
+  padding: var(--espaciado-xs);
+  
+}
+
+.login-cuentas-demo-titulo {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semibold);
+  letter-spacing: 0.04em;
+  color: var(--color-texto-secundario);
+  padding: var(--espaciado-md) var(--espaciado-md) var(--espaciado-xs);
+  
+}
+
+.login-cuentas-demo-subtitulo {
+  font-size: var(--texto-xs);
+  color: var(--color-texto-placeholder);
+  padding: 0 var(--espaciado-md) var(--espaciado-sm);
+  
+}
+
+.login-cuentas-demo-lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-cuenta-demo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px var(--espaciado-md);
+  border-top: 1px solid var(--color-borde);
+  cursor: pointer;
+  transition: background-color var(--transicion-rapida);
+}
+
+.login-cuenta-demo:hover,
+.login-cuenta-demo:focus-visible {
+  background-color: var(--color-fondo-app);
+}
+
+/* Contenido principal (flex-1) */
+.login-cuenta-demo-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.login-cuenta-demo-rol {
+  display: block;
+  font-size: 10px;
+  font-weight: var(--peso-semibold);
+  color: var(--color-texto-secundario);
+  margin-bottom: 2px;
+}
+
+.login-cuenta-demo-correo {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-medio);
+  color: var(--color-texto);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.login-cuenta-demo-password {
+  font-size: 10px;
+  color: var(--color-texto-secundario);
+}
+
+.login-nota-acceso {
+  text-align: center;
+  font-size: var(--texto-xs);
+  color: var(--color-texto-placeholder);
+  margin-top: var(--espaciado-lg);
+}
+
+
+/* ============================================
+   RESPONSIVE
+   Breakpoint en 1024px (no 991.98px) para igualar
+   exactamente el "lg" de Tailwind que usa el prototipo
+   real (confirmado: clase "hidden lg:flex" en el panel
+   azul — no se reordena en columna, se OCULTA del todo).
+   ============================================ */
+@media (max-width: 1023.98px) {
+  .login-panel-marca {
+    display: none !important;
+  }
+
+  .login-panel-form {
+    padding: var(--espaciado-lg);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: var(--espaciado-xl);
+  }
+
+  .login-mini-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--espaciado-sm);
+    font-size: var(--texto-lg);
+    font-weight: var(--peso-bold);
+    color: var(--color-marino-800);
+    margin-bottom: var(--espaciado-xl);
+    width: 100%;
+    max-width: 440px;
+  }
+
+  .login-form-contenedor {
+    width: 100%;
+  }
+}

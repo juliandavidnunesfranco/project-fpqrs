@@ -1,74 +1,163 @@
 /* ============================================
-   variables.css —
-   variables css centralizadas del proyecto. Cambiar un
+   variables.css 
+   variables centralizadas del proyecto. Cambiar un
    valor acá se propaga a todo el sitio — evita códigos
    hex sueltos repetidos en cada archivo .css de /pages/.
 
-   Paleta confirmada contra prototipo (no inventada): azul marino del sidebar/login, 
-   rojo de alertas/badge/vencido, verde de cerrado/éxito, naranja de "próximo a vencer".
+   --------------------------------------------------
+   ORIGEN DE LOS VALORES: estos NO son aproximaciones a ojo. 
+   Fueron extraídos inspeccionando el DOM real del prototipo con DevTools 
+   (pestaña Elementos → Estilos), leyendo las custom properties que el
+   prototipo original define en :root. El prototipo está
+   construido con Next.js + Tailwind (no accesible para
+   nosotros como código fuente), pero sus variables CSS
+   computadas SÍ son visibles en el navegador — son datos
+   reales, no inventados.
+
+   Esto incluye estados (Asignado, Pendiente, Respondido,
+   Reabierto, Anulado) que no aparecían en los 11 casos de
+   ejemplo capturados en la Bandeja, pero que el sistema sí
+   contempla — se incorporan para fidelidad completa aunque
+   nuestros datos de ejemplo no los usen todos.
    ============================================ */
 
 :root {
 
   /* --------------------------------------------
-     COLOR — Marca / Sidebar / Panel de login
+     COLOR — Base del sistema (tal como las define
+     el prototipo original)
      -------------------------------------------- */
-  --color-marino-900: #14233d;   /* fondo más oscuro: franja superior, logo */
-  --color-marino-800: #1a2f4a;   /* fondo base del sidebar y panel izq. login */
-  --color-marino-700: #233e5e;   /* fondo del item activo en el sidebar */
-  --color-marino-600: #2e5298;   /* botones primarios, links, "Ingresar al sistema" */
+  --background: #f4f6f9;
+  --foreground: #0f1c2e;
+  --primary: #1e3a5f;
+  --primary-foreground: #ffffff;
+  --secondary: #e8eef5;
+  --secondary-foreground: #1e3a5f;
+  --accent: #2e7d32;
+  --accent-foreground: #ffffff;
+  --muted: #edf0f4;
+  --muted-foreground: #64748b;
+  --card: #ffffff;
+  --card-foreground: #0f1c2e;
+  --border: #d1d9e6;
+  --input: #e8eef5;
+  --ring: #1e3a5f;
+  --radius: 8px;
 
   /* --------------------------------------------
-     COLOR — Texto sobre fondo oscuro (sidebar/login)
+     COLOR — Alias en español, usados en el resto de
+     nuestro CSS (mantenemos ambos nombres: los originales
+     arriba como referencia de fidelidad, estos como los
+     que realmente usamos en components.css y cada vista)
      -------------------------------------------- */
+  --color-marino-900: #0f1c2e;        /* = --foreground, fondo más oscuro */
+  --color-marino-800: #1e3a5f;        /* = --primary, fondo base sidebar/login */
+  --color-marino-700: #2a4a73;        /* variante más clara de primary, para hover/activo */
+  --color-marino-600: #1e3a5f;        /* = --primary, botones */
+
   --color-texto-claro: #ffffff;
-  --color-texto-claro-tenue: #aab8cc;   /* "Operación"/"Administración", subtítulos */
-  --color-texto-claro-debil: #7c8aa3;   /* texto deshabilitado sobre fondo oscuro */
+  --color-texto-claro-tenue: #b7c4d6;
+  --color-texto-claro-debil: #8294ad;
 
-  /* --------------------------------------------
-     COLOR — Texto sobre fondo claro (paneles, tablas)
-     -------------------------------------------- */
-  --color-texto: #1f2937;
-  --color-texto-secundario: #6b7280;
+  --color-texto: #0f1c2e;             /* = --foreground */
+  --color-texto-secundario: #64748b;  /* = --muted-foreground */
   --color-texto-placeholder: #9aa3af;
 
-  /* --------------------------------------------
-     COLOR — Fondos claros
-     -------------------------------------------- */
-  --color-fondo-app: #f4f5f7;     /* fondo general de las páginas internas */
-  --color-fondo-card: #ffffff;
-  --color-borde: #e2e4e9;
-  --color-borde-input: #d7dbe3;
+  --color-fondo-app: #f4f6f9;         /* = --background */
+  --color-fondo-card: #ffffff;        /* = --card */
+  --color-borde: #d1d9e6;             /* = --border */
+  --color-borde-input: #e8eef5;       /* = --input */
+
 
   /* --------------------------------------------
-     COLOR — Estados semánticos (SLA, badges, alertas)
-     Cada estado tiene versión "fuerte" (texto/ícono) y
-     "suave" (fondo de pill/badge), igual que se ve en
-     las capturas: texto de color sobre fondo pastel.
+     COLOR — Estados de CASO (campo "Estado" en la tabla)
+     Valores reales extraídos del prototipo. Cada uno con
+     su versión de texto/ícono y su fondo "suave".
      -------------------------------------------- */
-  --color-exito: #2e9e4f;
-  --color-exito-suave: #e1f5ea;
+  --status-radicado: #1565c0;
+  --status-radicado-bg: #e3f2fd;
 
-  --color-advertencia: #c87f06;
-  --color-advertencia-suave: #fdf3d9;
+  --status-asignado: #6a1b9a;
+  --status-asignado-bg: #f3e5f5;
 
-  --color-peligro: #d9534f;
-  --color-peligro-suave: #fbe9e8;
+  --status-engestion: #e65100;
+  --status-engestion-bg: #fff3e0;
 
-  --color-info: #2e5298;
-  --color-info-suave: #e7edf9;
+  --status-pendiente: #f9a825;
+  --status-pendiente-bg: #fffde7;
 
-  --color-neutro: #6b7280;
-  --color-neutro-suave: #eceef1;
+  --status-respondido: #00695c;
+  --status-respondido-bg: #e0f2f1;
 
-  /* Badge de notificación  ( 5 rojo sólido) */
-  --color-badge-fondo: #e0433d;
+  --status-cerrado: #37474f;
+  --status-cerrado-bg: #eceff1;
+
+  --status-reabierto: #ad1457;
+  --status-reabierto-bg: #fce4ec;
+
+  --status-anulado: #546e7a;
+  --status-anulado-bg: #eceff1;
+
+  /* --------------------------------------------
+     COLOR — Prioridad (campo "Prioridad")
+     -------------------------------------------- */
+  --priority-baja: #388e3c;
+  --priority-baja-bg: #e8f5e9;
+
+  --priority-normal: #1565c0;
+  --priority-normal-bg: #e3f2fd;
+
+  --priority-alta: #e65100;
+  --priority-alta-bg: #fff3e0;
+
+  --priority-critica: #b71c1c;
+  --priority-critica-bg: #ffebee;
+
+  /* --------------------------------------------
+     COLOR — Semáforo de SLA (campo "Semáforo")
+     -------------------------------------------- */
+  --sla-verde: #2e7d32;
+  --sla-verde-bg: #e8f5e9;
+
+  --sla-amarillo: #f57f17;
+  --sla-amarillo-bg: #fff8e1;
+
+  --sla-rojo: #c62828;
+  --sla-rojo-bg: #ffebee;
+
+  --sla-gris: #546e7a;       /* usado para "Cerrado" en el semáforo */
+  --sla-gris-bg: #eceff1;
+
+  /* --------------------------------------------
+     COLOR — Alias semánticos genéricos (usados en
+     componentes que no son específicos de caso/SLA,
+     como alertas generales o validación de formularios)
+     -------------------------------------------- */
+  --color-exito: var(--sla-verde);
+  --color-exito-suave: var(--sla-verde-bg);
+
+  --color-advertencia: var(--sla-amarillo);
+  --color-advertencia-suave: var(--sla-amarillo-bg);
+
+  --color-peligro: var(--sla-rojo);
+  --color-peligro-suave: var(--sla-rojo-bg);
+
+  --color-info: var(--status-radicado);
+  --color-info-suave: var(--status-radicado-bg);
+
+  --color-neutro: var(--sla-gris);
+  --color-neutro-suave: var(--sla-gris-bg);
+
+  /* Badge de notificación tipo "WhatsApp" (rojo sólido) */
+  --color-badge-fondo: #c62828;       /* = --sla-rojo, consistente con el resto de "alerta" */
   --color-badge-texto: #ffffff;
+
 
   /* --------------------------------------------
      TIPOGRAFÍA
+     Fuente real del prototipo: Plus Jakarta Sans.
      -------------------------------------------- */
-  --fuente-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --fuente-base: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   --texto-xs: 0.75rem;    /* 12px — labels de KPI, badges */
   --texto-sm: 0.875rem;   /* 14px — texto de tabla, sidebar */
@@ -94,15 +183,17 @@
 
   /* --------------------------------------------
      BORDES Y SOMBRAS
+     --radius viene del prototipo (8px); el resto de
+     escalas las derivamos a partir de ese valor base.
      -------------------------------------------- */
   --radio-borde-sm: 6px;
-  --radio-borde: 8px;
+  --radio-borde: var(--radius);   /* 8px, igual al prototipo */
   --radio-borde-lg: 12px;
-  --radio-borde-pill: 999px;   /* badges, pills de estado */
-  --radio-borde-circulo: 50%;  /* avatar, botón toggle, badge numérico */
+  --radio-borde-pill: 999px;      /* badges, pills de estado */
+  --radio-borde-circulo: 50%;     /* avatar, botón toggle, badge numérico */
 
-  --sombra-card: 0 1px 3px rgba(20, 35, 61, 0.08);
-  --sombra-card-hover: 0 4px 12px rgba(20, 35, 61, 0.12);
+  --sombra-card: 0 1px 3px rgba(15, 28, 46, 0.08);
+  --sombra-card-hover: 0 4px 12px rgba(15, 28, 46, 0.12);
 
   /* --------------------------------------------
      LAYOUT — Sidebar
@@ -116,5 +207,3 @@
   --transicion-rapida: 150ms ease;
   --transicion-base: 250ms ease;
 }
-
-/* Paleta de colores confirmada juliandev */

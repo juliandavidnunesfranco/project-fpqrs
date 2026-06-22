@@ -393,3 +393,11 @@
   white-space: nowrap;
   border: 0;
 }
+
+/* Tipografía global — se declara aquí (después de Bootstrap) para
+   evitar que Bootstrap sobreescriba la fuente real del prototipo.
+   Reset.css no es suficiente porque Bootstrap carga después. */
+html,
+body {
+  font-family: var(--fuente-base) !important;
+}
