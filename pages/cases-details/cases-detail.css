@@ -2,6 +2,11 @@
    CASES-DETAILS.CSS
    ============================================ */
 
+/* Garantizar box-sizing en toda la página */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 .app-layout {
   display: flex;
   height: 100vh;
@@ -22,8 +27,8 @@
   overflow: hidden;
 }
 
-.app-main { flex: 1; min-width: 0; overflow-y: auto; }
-.app-main-inner { padding: 24px; max-width: 1536px; margin: 0 auto; }
+.app-main { flex: 1; min-width: 0; overflow-y: auto; overflow-x: hidden; }
+.app-main-inner { padding: 24px; max-width: 1536px; margin: 0 auto; overflow-x: hidden; }
 
 
 /* ============================================
@@ -90,6 +95,9 @@
   white-space: nowrap;
   font-size: 0.75rem;
   padding: 2px 8px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .badge-queja { background-color: #fff7ed; color: #c2410c; }
@@ -397,6 +405,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
 }
 
 .estado-actual-clave { font-size: 0.75rem; color: var(--muted-foreground); flex-shrink: 0; }
@@ -406,6 +416,8 @@
 /* Selects de acción */
 .accion-select {
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 10px 12px;
   border-radius: 8px;
   border: 1px solid var(--border);
@@ -543,5 +555,73 @@
    RESPONSIVE
    ============================================ */
 @media (max-width: 1023.98px) {
-  .app-main-inner { padding: 16px; }
+  /* Contenedor principal */
+  .app-main { overflow-x: hidden !important; }
+  .app-main-inner { padding: 12px !important; overflow-x: hidden !important; }
+
+  /* Grid principal → 1 columna */
+  .detalle-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 16px !important;
+  }
+
+  /* Columnas: ancho completo */
+  .detalle-col-principal,
+  .detalle-col-acciones {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Cards: ancho completo, no desborden */
+  .detalle-card,
+  .accion-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Datos del asociado/caso: 2 col en mobile, 1 en muy chico */
+  .detalle-grid-datos {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Header */
+  .detalle-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .detalle-titulo-fila { flex-wrap: wrap; gap: 6px; }
+  .detalle-titulo { font-size: 1.1rem; }
+
+  /* Tabs: scroll horizontal suave */
+  .tabs-nav {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Selects y botones: ancho completo */
+  .accion-select,
+  .accion-textarea,
+  .btn-accion-primario,
+  .btn-accion-secundario,
+  .btn-cerrar-caso,
+  .btn-anular-caso {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Estado actual */
+  .estado-actual-fila { flex-wrap: wrap; gap: 4px; }
+  .estado-actual-valor { text-align: left; }
+}
+
+@media (max-width: 480px) {
+  .detalle-grid-datos { grid-template-columns: 1fr !important; }
+  .app-main-inner { padding: 10px !important; }
 }

@@ -338,12 +338,13 @@ function activarFuncionalidadColapsar() {
     cerrarSesion("../login/login.html");
   });
 
-  // Inyectar botón hamburguesa y overlay para mobile
-  if ($("#btn-hamburguesa").length === 0) {
+  // Inyectar overlay y botón hamburguesa para mobile
+  if ($("#sidebar-overlay").length === 0) {
     $("body").prepend(
       '<div class="sidebar-overlay" id="sidebar-overlay"></div>',
     );
-    // Insertar hamburguesa en el page-header si existe, si no al inicio del main
+  }
+  if ($("#btn-hamburguesa").length === 0) {
     const $header = $(".page-header, .detalle-header").first();
     if ($header.length) {
       $header.prepend(
@@ -354,34 +355,13 @@ function activarFuncionalidadColapsar() {
 
   // Abrir sidebar en mobile
   $(document).on("click", "#btn-hamburguesa", function () {
-    const $s = $("#sidebar-contenedor");
-    // Forzar visibilidad via style directo por si algún CSS lo oculta
-    $s.css({
-      display: "flex",
-      "flex-direction": "column",
-      position: "fixed",
-      top: "0",
-      left: "0",
-      width: "240px",
-      height: "100vh",
-      "z-index": "1040",
-      transform: "translateX(0)",
-      transition: "transform 0.25s ease",
-      "box-shadow": "4px 0 20px rgba(0,0,0,0.3)",
-    });
-    $s.addClass("sidebar-mobile-abierto");
+    $("#sidebar-contenedor").addClass("sidebar-mobile-abierto");
     $("#sidebar-overlay").addClass("activo");
   });
 
   // Cerrar sidebar al tocar el overlay
   $(document).on("click", "#sidebar-overlay", function () {
-    const $s = $("#sidebar-contenedor");
-    $s.css("transform", "translateX(-100%)");
-    $s.css("box-shadow", "none");
-    setTimeout(function () {
-      $s.removeClass("sidebar-mobile-abierto");
-      $s.css({ transform: "", "box-shadow": "" });
-    }, 250);
+    $("#sidebar-contenedor").removeClass("sidebar-mobile-abierto");
     $("#sidebar-overlay").removeClass("activo");
   });
 }

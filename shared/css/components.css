@@ -369,7 +369,17 @@
    SIDEBAR — responsive mobile
    ============================================ */
 
-/* Botón hamburguesa — solo visible en mobile */
+/* Overlay oscuro detrás del sidebar en mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1038;
+}
+.sidebar-overlay.activo { display: block; }
+
+/* Botón hamburguesa */
 .btn-hamburguesa {
   display: none;
   align-items: center;
@@ -381,28 +391,14 @@
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   flex-shrink: 0;
 }
 
-/* Overlay oscuro detrás del sidebar en mobile */
-.sidebar-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0,0,0,0.4);
-  z-index: 1039;
-}
-
-.sidebar-overlay.activo {
-  display: block;
-}
-
 @media (max-width: 1023.98px) {
-  .btn-hamburguesa {
-    display: flex;
-  }
+  .btn-hamburguesa { display: flex; }
 
+  /* Sidebar completamente oculto en mobile — overlay al abrir */
   #sidebar-contenedor {
     position: fixed !important;
     top: 0 !important;
@@ -410,16 +406,19 @@
     width: 240px !important;
     height: 100vh !important;
     z-index: 1040 !important;
-    transform: translateX(-100%) !important;
-    transition: transform 0.25s ease !important;
     display: flex !important;
     flex-direction: column !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.25s ease !important;
   }
 
   #sidebar-contenedor.sidebar-mobile-abierto {
     transform: translateX(0) !important;
     box-shadow: 4px 0 20px rgba(0,0,0,0.3) !important;
   }
+
+  /* Ocultar botón toggle flotante en mobile (lo reemplaza el hamburguesa) */
+  .sidebar-toggle-btn-flotante { display: none !important; }
 }
 
 
