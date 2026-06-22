@@ -325,6 +325,7 @@ function renderSidebar(carpetaActiva) {
 }
 
 function activarFuncionalidadColapsar() {
+  // Colapsar en desktop
   $("#sidebar-toggle").on("click", function () {
     const contenedor = $("#sidebar-contenedor");
     contenedor.toggleClass("colapsado");
@@ -332,8 +333,34 @@ function activarFuncionalidadColapsar() {
     $(this).attr("aria-expanded", !esColapsado);
   });
 
-  // Cerrar sesión: limpiar storage y redirigir al login
+  // Cerrar sesión
   $(document).on("click", "#btn-cerrar-sesion", function () {
     cerrarSesion("../login/login.html");
+  });
+
+  // Inyectar botón hamburguesa y overlay para mobile
+  if ($("#btn-hamburguesa").length === 0) {
+    $("body").prepend(
+      '<div class="sidebar-overlay" id="sidebar-overlay"></div>',
+    );
+    // Insertar hamburguesa en el page-header si existe, si no al inicio del main
+    const $header = $(".page-header, .detalle-header").first();
+    if ($header.length) {
+      $header.prepend(
+        '<button type="button" id="btn-hamburguesa" class="btn-hamburguesa me-2" aria-label="Abrir menú"><i class="bi bi-list"></i></button>',
+      );
+    }
+  }
+
+  // Abrir sidebar en mobile
+  $(document).on("click", "#btn-hamburguesa", function () {
+    $("#sidebar-contenedor").addClass("sidebar-mobile-abierto");
+    $("#sidebar-overlay").addClass("activo");
+  });
+
+  // Cerrar sidebar al tocar el overlay
+  $(document).on("click", "#sidebar-overlay", function () {
+    $("#sidebar-contenedor").removeClass("sidebar-mobile-abierto");
+    $("#sidebar-overlay").removeClass("activo");
   });
 }

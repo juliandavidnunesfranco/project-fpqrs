@@ -369,19 +369,53 @@
    SIDEBAR — responsive mobile
    ============================================ */
 
-@media (max-width: 991.98px) {
+/* Botón hamburguesa — solo visible en mobile */
+.btn-hamburguesa {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* Overlay oscuro detrás del sidebar en mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 1039;
+}
+
+.sidebar-overlay.activo {
+  display: block;
+}
+
+@media (max-width: 1023.98px) {
+  .btn-hamburguesa {
+    display: flex;
+  }
+
   #sidebar-contenedor {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1040;
+    height: 100vh;
     transform: translateX(-100%);
-    transition: transform var(--transicion-base);
-    box-shadow: var(--sombra-card-hover);
+    transition: transform 0.25s ease;
   }
 
-  #sidebar-contenedor:has(#sidebar.sidebar-abierto) {
+  #sidebar-contenedor.sidebar-mobile-abierto {
     transform: translateX(0);
+    box-shadow: 4px 0 20px rgba(0,0,0,0.3);
   }
 }
 
