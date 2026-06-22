@@ -1,11 +1,407 @@
 <!doctype html>
-<html lang="en">
+<html lang="es-CO" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>FPQRS-2026-04779 — GestorFPQRS</title>
+    <meta name="description" content="Detalle del caso FPQRS con información del asociado, datos del caso y acciones de gestión." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#1e3a5f" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/img/logo-prototipo.png" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "GestorFPQRS",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "provider": { "@type": "Organization", "name": "CoopFinanzas" }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../../shared/css/variables.css" />
+    <link rel="stylesheet" href="../../shared/css/reset.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../shared/css/components.css" />
+    <link rel="stylesheet" href="cases-detail.css" />
   </head>
   <body>
-    <h2>ESTO ES UN H2 DE PRUEBA</h2>
+
+    <div class="app-layout">
+
+      <!-- SIDEBAR -->
+      <div id="sidebar-contenedor"></div>
+
+      <!-- MAIN -->
+      <main class="app-main" id="main-content">
+        <div class="app-main-inner">
+
+          <!-- BREADCRUMB + HEADER -->
+          <div class="detalle-header">
+            <div>
+              <!-- Breadcrumb -->
+              <nav class="breadcrumb-nav" aria-label="Ruta de navegación">
+                <a href="../cases-tray/cases-tray.html" class="breadcrumb-link">
+                  <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                  Bandeja de Casos
+                </a>
+                <span class="breadcrumb-sep" aria-hidden="true">/</span>
+                <span class="breadcrumb-actual">FPQRS-2026-04779</span>
+              </nav>
+
+              <!-- Título + badges de estado -->
+              <div class="detalle-titulo-fila">
+                <h1 class="detalle-titulo">FPQRS-2026-04779</h1>
+                <span class="badge-detalle status-pendiente">Pendiente de Información</span>
+                <span class="badge-detalle badge-queja">Queja</span>
+                <span class="badge-detalle sla-rojo">
+                  <span class="sla-punto-detalle" aria-hidden="true"></span>
+                  Vencido
+                </span>
+              </div>
+
+              <p class="detalle-meta">Radicado el 04/05/2026 18:00 · Canal: App Móvil</p>
+            </div>
+
+            <button type="button" class="btn-reasignar-header" id="btn-reasignar-header">
+              <i class="bi bi-person-check" aria-hidden="true"></i>
+              Reasignar
+            </button>
+          </div>
+
+          <!-- ALERTA SLA VENCIDO -->
+          <div class="alerta-sla" role="alert">
+            <i class="bi bi-exclamation-triangle-fill alerta-sla__icono" aria-hidden="true"></i>
+            <div>
+              <p class="alerta-sla__titulo">SLA vencido — Atención urgente requerida</p>
+              <p class="alerta-sla__desc">La fecha límite de respuesta fue 05/05/2026 03:00. Este caso requiere acción inmediata.</p>
+            </div>
+          </div>
+
+          <!-- GRID PRINCIPAL: 2 columnas -->
+          <div class="detalle-grid">
+
+            <!-- COLUMNA IZQUIERDA (2/3) -->
+            <div class="detalle-col-principal">
+
+              <!-- Datos del Asociado -->
+              <section class="detalle-card" aria-labelledby="titulo-asociado">
+                <div class="detalle-card__header">
+                  <i class="bi bi-person detalle-card__icono" aria-hidden="true"></i>
+                  <h2 class="detalle-card__titulo" id="titulo-asociado">Datos del Asociado</h2>
+                </div>
+                <div class="detalle-card__body detalle-grid-datos">
+                  <div class="dato-campo">
+                    <p class="dato-label">Nombre</p>
+                    <p class="dato-valor dato-valor--bold">Jorge Luis Patiño Restrepo</p>
+                  </div>
+                  <div class="dato-campo">
+                    <p class="dato-label">Identificación</p>
+                    <p class="dato-valor dato-valor--mono">CC 71456023</p>
+                  </div>
+                  <div class="dato-campo">
+                    <p class="dato-label">Correo</p>
+                    <p class="dato-valor dato-valor--primary">jl.patino@empresa.com.co</p>
+                  </div>
+                  <div class="dato-campo">
+                    <p class="dato-label">Celular</p>
+                    <p class="dato-valor dato-valor--mono">3209876543</p>
+                  </div>
+                  <div class="dato-campo">
+                    <p class="dato-label">Dirección</p>
+                    <p class="dato-valor">Av El Poblado #12-45, Medellín</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Datos del Caso -->
+              <section class="detalle-card" aria-labelledby="titulo-caso">
+                <div class="detalle-card__header">
+                  <i class="bi bi-briefcase detalle-card__icono" aria-hidden="true"></i>
+                  <h2 class="detalle-card__titulo" id="titulo-caso">Datos del Caso</h2>
+                </div>
+                <div class="detalle-card__body detalle-grid-datos">
+                  <div class="dato-campo">
+                    <p class="dato-label">Servicio</p>
+                    <p class="dato-valor dato-valor--medio">Pagos y Transferencias</p>
+                  </div>
+                  <div class="dato-campo">
+                    <p class="dato-label">Categoría</p>
+                    <p class="dato-valor dato-valor--medio">Pago PSE</p>
+                  </div>
+                  <div class="dato-campo">
+                    <p class="dato-label">Subcategoría</p>
+                    <p class="dato-valor dato-valor--medio">Pago PSE no acreditado en destino</p>
+                  </div>
+                  <div class="dato-campo">
+                    <p class="dato-label">Responsable</p>
+                    <p class="dato-valor">Rodrigo Esteban Muñoz</p>
+                    <p class="dato-subnota">Operaciones Financieras</p>
+                  </div>
+                  <div class="dato-campo">
+                    <p class="dato-label">Prioridad</p>
+                    <span class="badge-detalle priority-critica">Crítica</span>
+                  </div>
+                  <div class="dato-campo">
+                    <p class="dato-label">SLA aplicado</p>
+                    <p class="dato-valor dato-valor--bold dato-valor--mono">4h</p>
+                  </div>
+                  <div class="dato-campo">
+                    <p class="dato-label">Fecha límite SLA</p>
+                    <p class="dato-valor dato-valor--bold dato-valor--mono dato-valor--danger">05/05/2026 03:00</p>
+                  </div>
+                  <div class="dato-campo">
+                    <p class="dato-label">Tipo de causa</p>
+                    <p class="dato-valor">Falla en pasarela de pago PSE</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- TABS: Descripción / Comentarios / Adjuntos / Historial / Respuestas -->
+              <section class="detalle-card" aria-labelledby="titulo-tabs">
+                <div class="tabs-nav" role="tablist" aria-label="Contenido del caso">
+                  <button class="tab-btn tab-btn--activo" role="tab" data-tab="descripcion" aria-selected="true" aria-controls="panel-descripcion" id="tab-descripcion">
+                    <i class="bi bi-file-text" aria-hidden="true"></i>
+                    Descripción
+                  </button>
+                  <button class="tab-btn" role="tab" data-tab="comentarios" aria-selected="false" aria-controls="panel-comentarios" id="tab-comentarios">
+                    <i class="bi bi-chat-square" aria-hidden="true"></i>
+                    Comentarios
+                    <span class="tab-badge">3</span>
+                  </button>
+                  <button class="tab-btn" role="tab" data-tab="adjuntos" aria-selected="false" aria-controls="panel-adjuntos" id="tab-adjuntos">
+                    <i class="bi bi-paperclip" aria-hidden="true"></i>
+                    Adjuntos
+                    <span class="tab-badge">3</span>
+                  </button>
+                  <button class="tab-btn" role="tab" data-tab="historial" aria-selected="false" aria-controls="panel-historial" id="tab-historial">
+                    <i class="bi bi-clock-history" aria-hidden="true"></i>
+                    Historial
+                    <span class="tab-badge">11</span>
+                  </button>
+                  <button class="tab-btn" role="tab" data-tab="respuestas" aria-selected="false" aria-controls="panel-respuestas" id="tab-respuestas">
+                    <i class="bi bi-chat-square" aria-hidden="true"></i>
+                    Respuestas
+                  </button>
+                </div>
+
+                <!-- Panel Descripción -->
+                <div class="tab-panel tab-panel--activo" id="panel-descripcion" role="tabpanel" aria-labelledby="tab-descripcion">
+                  <p class="tab-seccion-label">Descripción del caso</p>
+                  <div class="descripcion-box">
+                    <p class="descripcion-texto">Pago PSE por $2.350.000 al banco Davivienda no fue acreditado. Código: PSE-20260503-8847.</p>
+                  </div>
+                </div>
+
+                <!-- Panel Comentarios -->
+                <div class="tab-panel" id="panel-comentarios" role="tabpanel" aria-labelledby="tab-comentarios" hidden>
+                  <p class="tab-seccion-label">Comentarios del caso</p>
+                  <div class="comentario-item">
+                    <p class="comentario-autor">Operador — 04/05/2026 19:30</p>
+                    <p class="comentario-texto">Se contactó al banco origen para validar la transacción.</p>
+                  </div>
+                  <div class="comentario-item">
+                    <p class="comentario-autor">Sistema — 04/05/2026 22:00</p>
+                    <p class="comentario-texto">Caso reasignado a Operaciones Financieras.</p>
+                  </div>
+                  <div class="comentario-item">
+                    <p class="comentario-autor">Supervisor — 05/05/2026 01:00</p>
+                    <p class="comentario-texto">Escalado por SLA próximo a vencer.</p>
+                  </div>
+                </div>
+
+                <!-- Panel Adjuntos -->
+                <div class="tab-panel" id="panel-adjuntos" role="tabpanel" aria-labelledby="tab-adjuntos" hidden>
+                  <p class="tab-seccion-label">Documentos adjuntos</p>
+                  <div class="adjunto-item">
+                    <i class="bi bi-file-earmark-pdf adjunto-icono" aria-hidden="true"></i>
+                    <span class="adjunto-nombre">comprobante-pse-8847.pdf</span>
+                    <span class="adjunto-tamano">234 KB</span>
+                  </div>
+                  <div class="adjunto-item">
+                    <i class="bi bi-file-earmark-image adjunto-icono" aria-hidden="true"></i>
+                    <span class="adjunto-nombre">captura-pantalla-error.png</span>
+                    <span class="adjunto-tamano">89 KB</span>
+                  </div>
+                  <div class="adjunto-item">
+                    <i class="bi bi-file-earmark-text adjunto-icono" aria-hidden="true"></i>
+                    <span class="adjunto-nombre">extracto-cuenta-mayo.pdf</span>
+                    <span class="adjunto-tamano">156 KB</span>
+                  </div>
+                </div>
+
+                <!-- Panel Historial -->
+                <div class="tab-panel" id="panel-historial" role="tabpanel" aria-labelledby="tab-historial" hidden>
+                  <p class="tab-seccion-label">Historial de cambios</p>
+                  <div class="historial-lista">
+                    <div class="historial-item">
+                      <span class="historial-fecha">04/05/2026 18:00</span>
+                      <span class="historial-evento">Caso radicado vía App Móvil</span>
+                    </div>
+                    <div class="historial-item">
+                      <span class="historial-fecha">04/05/2026 18:05</span>
+                      <span class="historial-evento">Asignado automáticamente a Rodrigo Esteban Muñoz</span>
+                    </div>
+                    <div class="historial-item">
+                      <span class="historial-fecha">04/05/2026 19:30</span>
+                      <span class="historial-evento">Primer comentario registrado por Operador</span>
+                    </div>
+                    <div class="historial-item">
+                      <span class="historial-fecha">04/05/2026 22:00</span>
+                      <span class="historial-evento">Reasignado a Operaciones Financieras</span>
+                    </div>
+                    <div class="historial-item">
+                      <span class="historial-fecha">05/05/2026 01:00</span>
+                      <span class="historial-evento">Escalado por Supervisor — SLA próximo a vencer</span>
+                    </div>
+                    <div class="historial-item historial-item--alerta">
+                      <span class="historial-fecha">05/05/2026 03:00</span>
+                      <span class="historial-evento">⚠ SLA vencido — Caso sin resolver</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Panel Respuestas -->
+                <div class="tab-panel" id="panel-respuestas" role="tabpanel" aria-labelledby="tab-respuestas" hidden>
+                  <p class="tab-seccion-label">Respuestas al asociado</p>
+                  <p class="tab-vacio">No se han enviado respuestas al asociado para este caso.</p>
+                </div>
+              </section>
+
+            </div>
+
+            <!-- COLUMNA DERECHA (1/3) — Panel de acciones -->
+            <aside class="detalle-col-acciones">
+
+              <!-- Estado actual -->
+              <div class="accion-card">
+                <p class="accion-card__label">Estado actual</p>
+                <div class="estado-actual-lista">
+                  <div class="estado-actual-fila">
+                    <span class="estado-actual-clave">Estado</span>
+                    <span id="badge-estado-actual" class="badge-detalle status-pendiente">Pendiente de Información</span>
+                  </div>
+                  <div class="estado-actual-fila">
+                    <span class="estado-actual-clave">Prioridad</span>
+                    <span id="badge-prioridad-actual" class="badge-detalle priority-critica">Crítica</span>
+                  </div>
+                  <div class="estado-actual-fila">
+                    <span class="estado-actual-clave">Responsable</span>
+                    <span id="texto-responsable-actual" class="estado-actual-valor">Rodrigo Esteban Muñoz</span>
+                  </div>
+                  <div class="estado-actual-fila">
+                    <span class="estado-actual-clave">SLA</span>
+                    <span class="estado-actual-valor estado-actual-valor--mono">4h</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cambiar estado -->
+              <div class="accion-card">
+                <div class="accion-card__titulo-fila">
+                  <i class="bi bi-gear accion-card__icono--primary" aria-hidden="true"></i>
+                  <p class="accion-card__titulo-texto">Cambiar estado</p>
+                </div>
+                <select id="select-estado" class="accion-select" aria-label="Cambiar estado del caso">
+                  <option value="Pendiente de Información" selected>Pendiente de Información</option>
+                  <option value="En Gestión">En Gestión</option>
+                  <option value="Respondido">Respondido</option>
+                  <option value="Cerrado">Cerrado</option>
+                </select>
+                <button type="button" class="btn-accion-secundario mt-2" id="btn-aplicar-estado">
+                  Aplicar cambio de estado
+                </button>
+              </div>
+
+              <!-- Cambiar prioridad -->
+              <div class="accion-card">
+                <div class="accion-card__titulo-fila">
+                  <i class="bi bi-exclamation-triangle accion-card__icono--warning" aria-hidden="true"></i>
+                  <p class="accion-card__titulo-texto">Cambiar prioridad</p>
+                </div>
+                <p class="accion-card__nota">Solo se muestran las prioridades permitidas para esta categoría. El SLA se recalculará automáticamente.</p>
+                <select id="select-prioridad" class="accion-select accion-select--warning" aria-label="Cambiar prioridad del caso">
+                  <option value="Baja">Baja</option>
+                  <option value="Normal">Normal</option>
+                  <option value="Alta">Alta</option>
+                  <option value="Crítica" selected>Prioridad actual: Crítica</option>
+                </select>
+              </div>
+
+              <!-- Reasignar caso -->
+              <div class="accion-card">
+                <div class="accion-card__titulo-fila">
+                  <i class="bi bi-person-check accion-card__icono--primary" aria-hidden="true"></i>
+                  <p class="accion-card__titulo-texto">Reasignar caso</p>
+                </div>
+                <p class="accion-card__nota">Transfiera este caso a otro operador. El cambio quedará registrado en la trazabilidad.</p>
+                <select id="select-responsable" class="accion-select accion-select--primary" aria-label="Reasignar responsable del caso">
+                  <option value="Rodrigo Esteban Muñoz" selected>Responsable: Rodrigo Esteban</option>
+                  <option value="Valentina Ospina Ríos">Valentina Ospina Ríos</option>
+                  <option value="Jorge Iván Castillo">Jorge Iván Castillo</option>
+                  <option value="Iván Darío Zapata">Iván Darío Zapata</option>
+                  <option value="Diana Carolina Ríos">Diana Carolina Ríos</option>
+                </select>
+              </div>
+
+              <!-- Registrar observación -->
+              <div class="accion-card">
+                <div class="accion-card__titulo-fila">
+                  <i class="bi bi-chat-square accion-card__icono--primary" aria-hidden="true"></i>
+                  <p class="accion-card__titulo-texto">Registrar observación</p>
+                </div>
+                <form id="form-observacion" novalidate>
+                  <textarea
+                    id="textarea-observacion"
+                    name="observacion"
+                    rows="3"
+                    class="accion-textarea"
+                    placeholder="Escriba su observación interna o respuesta al asociado..."
+                    aria-label="Observación"
+                  ></textarea>
+                  <label class="accion-checkbox-label">
+                    <input type="checkbox" id="chk-notificar" name="esRespuesta" class="accion-checkbox">
+                    <span>Notificar esta respuesta al asociado</span>
+                  </label>
+                  <button type="submit" class="btn-accion-primario">
+                    Registrar observación
+                  </button>
+                </form>
+              </div>
+
+              <!-- Acciones finales -->
+              <div class="accion-card">
+                <p class="accion-card__label">Acciones finales</p>
+                <div class="acciones-finales">
+                  <button type="button" class="btn-cerrar-caso" id="btn-cerrar-caso">
+                    <i class="bi bi-lock" aria-hidden="true"></i>
+                    Cerrar caso
+                  </button>
+                  <button type="button" class="btn-anular-caso" id="btn-anular-caso">
+                    <i class="bi bi-x-circle" aria-hidden="true"></i>
+                    Anular caso
+                  </button>
+                </div>
+              </div>
+
+            </aside>
+          </div>
+
+        </div>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../shared/js/data.js"></script>
+    <script src="../../shared/js/session.js"></script>
+    <script src="../../shared/js/sidebar.js"></script>
+    <script src="cases-details.js"></script>
   </body>
 </html>

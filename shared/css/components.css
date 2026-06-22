@@ -26,6 +26,32 @@
   min-height: 100vh;
 }
 
+#sidebar-contenedor a.sidebar-link {
+  text-decoration: none !important;
+}
+
+.sidebar-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.7); /* Mismo tono text-white/70 */
+}
+
+.sidebar-link-activo .sidebar-icon-wrapper {
+  color: #ffffff;
+}
+
+.sidebar-link-texto-interno {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
 /* --------------------------------------------
    Fila del logo + botón toggle
    -------------------------------------------- */
@@ -51,20 +77,36 @@
   color: var(--color-texto-claro);
 }
 
-.sidebar-toggle-btn {
-  margin-left: auto;
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radio-borde-circulo);
-  background-color: var(--color-texto-claro);
-  color: var(--color-marino-800);
+
+.sidebar-toggle-btn-flotante {
+  position: absolute;
+  right: -12px; /* Mitad de su ancho (24px) para quedar sobre la línea divisoria */
+  top: 24px;   /* Alineado a la altura del logo */
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ffffff; /* Fondo blanco */
+  border: 1px solid #e5e7eb;  /* Borde suave gris */
+  color: #6b7280;            /* Color del icono gris */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--texto-sm);
-  transition: transform var(--transicion-base);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 30;
+  cursor: pointer;
+  padding: 0;
+  transition: transform var(--transicion-base), box-shadow var(--transicion-rapida);
 }
 
+.sidebar-toggle-btn-flotante:hover {
+  background-color: #f9fafb;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Girar la flecha si el contenedor está colapsado usando tu estructura actual */
+#sidebar-contenedor.colapsado .sidebar-toggle-btn-flotante svg {
+  transform: rotate(180deg);
+}
 .sidebar-toggle-btn:hover {
   background-color: var(--color-texto-claro-tenue);
 }

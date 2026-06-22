@@ -1,11 +1,400 @@
 <!doctype html>
-<html lang="en">
+<html lang="es-CO" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Registrar caso FPQRS — GestorFPQRS</title>
+    <meta name="description" content="Registre su Felicitación, Petición, Queja, Reclamo o Sugerencia ante CoopFinanzas. Atención según normativa SFC Colombia." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#1e3a5f" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/img/logo-prototipo.png" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "GestorFPQRS",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "provider": { "@type": "Organization", "name": "CoopFinanzas" }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../../shared/css/variables.css" />
+    <link rel="stylesheet" href="../../shared/css/reset.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../shared/css/components.css" />
+    <link rel="stylesheet" href="fpqrs-register.css" />
   </head>
   <body>
-    <h2>ESTO ES UN H2 DE PRUEBA</h2>
+
+    <!-- HEADER PÚBLICO — sin sidebar, portal del asociado -->
+    <header class="registro-header" role="banner">
+      <div class="registro-header__inner">
+        <div class="registro-header__marca">
+          <img src="../../assets/img/logo-prototipo.png" alt="" width="28" height="32" />
+          <div>
+            <span class="registro-header__nombre">GestorFPQRS</span>
+            <span class="registro-header__subtitulo">CoopFinanzas — Portal de Atención al Asociado</span>
+          </div>
+        </div>
+        <div class="registro-header__estado">
+          <span class="registro-estado-punto" aria-hidden="true"></span>
+          <span>Servicio disponible</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="registro-main" id="main-content">
+      <div class="registro-contenedor">
+
+        <!-- Título de la página -->
+        <div class="registro-page-header">
+          <h1 class="registro-titulo">Registrar caso FPQRS</h1>
+          <p class="registro-subtitulo">
+            Diligencie el formulario para radicar su Felicitación, Petición, Queja, Reclamo o Sugerencia.
+            Los campos marcados con <span aria-hidden="true">*</span><span class="visually-hidden">asterisco</span> son obligatorios.
+          </p>
+        </div>
+
+        <!-- Alerta informativa -->
+        <div class="registro-alerta-info" role="note">
+          <i class="bi bi-info-circle registro-alerta-info__icono" aria-hidden="true"></i>
+          <div>
+            <p class="registro-alerta-info__titulo">Información importante</p>
+            <p class="registro-alerta-info__texto">
+              Al enviar este formulario, su caso será radicado y recibirá un número de seguimiento.
+              Nuestro equipo le contactará según los tiempos de respuesta establecidos por la
+              <strong>Superintendencia Financiera de Colombia</strong>.
+            </p>
+          </div>
+        </div>
+
+        <form id="form-fpqrs" novalidate>
+
+          <!-- ============================================
+               SECCIÓN 1: Datos personales
+               ============================================ -->
+          <fieldset class="registro-seccion">
+            <legend class="registro-seccion__legend">
+              <i class="bi bi-person registro-seccion__icono" aria-hidden="true"></i>
+              <div>
+                <span class="registro-seccion__titulo">Datos personales</span>
+                <span class="registro-seccion__desc">Información del asociado que registra el caso</span>
+              </div>
+            </legend>
+
+            <div class="registro-grid-2">
+              <div class="registro-campo">
+                <label for="tipo-id" class="registro-label">
+                  Tipo de identificación <span class="registro-requerido" aria-hidden="true">*</span>
+                </label>
+                <select id="tipo-id" name="tipoId" class="registro-select" required aria-required="true">
+                  <option value="">Seleccionar...</option>
+                  <option value="CC">Cédula de Ciudadanía</option>
+                  <option value="CE">Cédula de Extranjería</option>
+                  <option value="NIT">NIT</option>
+                  <option value="PA">Pasaporte</option>
+                </select>
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <div class="registro-campo">
+                <label for="numero-id" class="registro-label">
+                  Número de identificación <span class="registro-requerido" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="numero-id"
+                  name="numeroId"
+                  class="registro-input"
+                  placeholder="Ej: 1082456789"
+                  required
+                  aria-required="true"
+                  inputmode="numeric"
+                />
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+
+            <div class="registro-campo">
+              <label for="nombre-completo" class="registro-label">
+                Nombre completo <span class="registro-requerido" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="nombre-completo"
+                name="nombreCompleto"
+                class="registro-input"
+                placeholder="Nombres y apellidos completos"
+                required
+                aria-required="true"
+                autocomplete="name"
+              />
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="registro-grid-2">
+              <div class="registro-campo">
+                <label for="correo" class="registro-label">
+                  Correo electrónico <span class="registro-requerido" aria-hidden="true">*</span>
+                </label>
+                <p class="registro-campo__hint">Le enviaremos confirmación y actualizaciones a este correo</p>
+                <input
+                  type="email"
+                  id="correo"
+                  name="correo"
+                  class="registro-input"
+                  placeholder="correo@ejemplo.com"
+                  required
+                  aria-required="true"
+                  autocomplete="email"
+                />
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <div class="registro-campo">
+                <label for="celular" class="registro-label">
+                  Número de celular <span class="registro-requerido" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="celular"
+                  name="celular"
+                  class="registro-input"
+                  placeholder="3XXXXXXXXX"
+                  required
+                  aria-required="true"
+                  autocomplete="tel"
+                  inputmode="tel"
+                />
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+
+            <div class="registro-campo">
+              <label for="direccion" class="registro-label">Dirección de residencia</label>
+              <input
+                type="text"
+                id="direccion"
+                name="direccion"
+                class="registro-input"
+                placeholder="Calle, carrera, número, ciudad"
+                autocomplete="street-address"
+              />
+            </div>
+
+          </fieldset>
+
+          <!-- ============================================
+               SECCIÓN 2: Datos del caso
+               ============================================ -->
+          <fieldset class="registro-seccion">
+            <legend class="registro-seccion__legend">
+              <i class="bi bi-briefcase registro-seccion__icono" aria-hidden="true"></i>
+              <div>
+                <span class="registro-seccion__titulo">Datos del caso</span>
+                <span class="registro-seccion__desc">Describa detalladamente su solicitud para una atención más ágil</span>
+              </div>
+            </legend>
+
+            <div class="registro-grid-2">
+              <div class="registro-campo">
+                <label for="tipo-caso" class="registro-label">
+                  Tipo de caso <span class="registro-requerido" aria-hidden="true">*</span>
+                </label>
+                <p class="registro-campo__hint">¿Qué tipo de comunicación desea radicar?</p>
+                <select id="tipo-caso" name="tipoCaso" class="registro-select" required aria-required="true">
+                  <option value="">Seleccionar tipo de caso...</option>
+                  <option value="Felicitación">Felicitación</option>
+                  <option value="Petición">Petición</option>
+                  <option value="Queja">Queja</option>
+                  <option value="Reclamo">Reclamo</option>
+                  <option value="Sugerencia">Sugerencia</option>
+                </select>
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <div class="registro-campo">
+                <label for="servicio" class="registro-label">
+                  Servicio <span class="registro-requerido" aria-hidden="true">*</span>
+                </label>
+                <p class="registro-campo__hint">¿Sobre qué servicio de la cooperativa es su caso?</p>
+                <select id="servicio" name="servicio" class="registro-select" required aria-required="true">
+                  <option value="">Seleccionar servicio...</option>
+                  <!-- Poblado dinámicamente por fpqrs-register.js desde data.js -->
+                </select>
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+
+            <div class="registro-grid-2">
+              <div class="registro-campo">
+                <label for="categoria" class="registro-label">
+                  Categoría <span class="registro-requerido" aria-hidden="true">*</span>
+                </label>
+                <p id="hint-categoria" class="registro-campo__hint registro-campo__hint--info">
+                  Seleccione primero el servicio para ver las categorías disponibles
+                </p>
+                <select id="categoria" name="categoria" class="registro-select" required aria-required="true" disabled aria-describedby="hint-categoria">
+                  <option value="">Seleccionar categoría...</option>
+                </select>
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <div class="registro-campo">
+                <label for="subcategoria" class="registro-label">
+                  Subcategoría <span class="registro-requerido" aria-hidden="true">*</span>
+                </label>
+                <p id="hint-subcategoria" class="registro-campo__hint registro-campo__hint--info">
+                  Seleccione la subcategoría que mejor describe su caso
+                </p>
+                <select id="subcategoria" name="subcategoria" class="registro-select" required aria-required="true" disabled aria-describedby="hint-subcategoria">
+                  <option value="">Seleccionar subcategoría...</option>
+                </select>
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+
+            <div class="registro-campo">
+              <label for="descripcion" class="registro-label">
+                Descripción detallada del caso <span class="registro-requerido" aria-hidden="true">*</span>
+              </label>
+              <p class="registro-campo__hint">
+                Incluya fechas, montos, números de transacción y cualquier detalle relevante que facilite la gestión de su caso
+              </p>
+              <textarea
+                id="descripcion"
+                name="descripcion"
+                class="registro-textarea"
+                rows="5"
+                required
+                aria-required="true"
+                placeholder="Describa su caso con el mayor detalle posible. Ej: El día 3 de mayo realicé un pago PSE por valor de $2.350.000 con código de transacción PSE-20260503-8847..."
+              ></textarea>
+              <div class="invalid-feedback"></div>
+            </div>
+
+          </fieldset>
+
+          <!-- ============================================
+               SECCIÓN 3: Documentos de soporte
+               ============================================ -->
+          <fieldset class="registro-seccion">
+            <legend class="registro-seccion__legend">
+              <i class="bi bi-paperclip registro-seccion__icono" aria-hidden="true"></i>
+              <div>
+                <span class="registro-seccion__titulo">Documentos de soporte</span>
+                <span class="registro-seccion__desc">Adjunte capturas de pantalla, comprobantes u otros documentos que respalden su caso (máx. 5 archivos, 5 MB c/u)</span>
+              </div>
+            </legend>
+
+            <!-- Zona de drag & drop -->
+            <div
+              id="zona-archivos"
+              class="registro-dropzone"
+              role="button"
+              tabindex="0"
+              aria-label="Zona para arrastrar archivos o hacer clic para seleccionar"
+            >
+              <input
+                type="file"
+                id="input-archivos"
+                name="archivos"
+                multiple
+                accept=".pdf,.jpg,.jpeg,.png,.docx"
+                class="visually-hidden"
+                aria-label="Seleccionar archivos"
+              />
+              <i class="bi bi-upload registro-dropzone__icono" aria-hidden="true"></i>
+              <p class="registro-dropzone__texto">
+                Arrastre archivos aquí <span class="registro-dropzone__link">o haga clic para seleccionar</span>
+              </p>
+              <p class="registro-dropzone__tipos">PDF, JPG, PNG, DOCX — máximo 5 MB por archivo</p>
+            </div>
+
+            <!-- Lista de archivos seleccionados -->
+            <ul id="lista-archivos" class="registro-archivos-lista" aria-label="Archivos seleccionados" aria-live="polite"></ul>
+            <p id="error-archivos" class="registro-error-archivos" role="alert" aria-live="assertive"></p>
+
+          </fieldset>
+
+          <!-- ============================================
+               AUTORIZACIÓN DE DATOS
+               ============================================ -->
+          <div class="registro-autorizacion">
+            <label class="registro-check-label">
+              <input
+                type="checkbox"
+                id="chk-autorizacion"
+                name="autorizacion"
+                class="registro-checkbox"
+                required
+                aria-required="true"
+              />
+              <span>
+                Autorizo a <strong>CoopFinanzas</strong> para recolectar, almacenar, usar y tratar mis datos personales
+                conforme a la <a href="#" class="registro-link">Política de Tratamiento de Datos Personales</a> y la
+                <strong>Ley 1581 de 2012</strong>, con el fin de gestionar mi solicitud FPQRS y contactarme durante
+                el proceso de atención.
+              </span>
+            </label>
+            <div id="error-autorizacion" class="registro-error-archivos" role="alert"></div>
+          </div>
+
+          <!-- ============================================
+               BOTÓN DE ENVÍO
+               ============================================ -->
+          <div class="registro-footer-form">
+            <div>
+              <p class="registro-footer-form__titulo">¿Listo para radicar su caso?</p>
+              <p class="registro-footer-form__desc">Recibirá un número de radicado y confirmación por correo electrónico</p>
+            </div>
+            <button type="submit" class="btn-radicar" id="btn-radicar">
+              Radicar caso FPQRS
+              <i class="bi bi-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+
+        </form>
+
+        <!-- Modal de éxito (oculto por defecto) -->
+        <div id="modal-exito" class="registro-modal-exito" hidden role="dialog" aria-modal="true" aria-labelledby="exito-titulo">
+          <div class="registro-modal-exito__card">
+            <div class="registro-modal-exito__icono-wrap">
+              <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+            </div>
+            <h2 class="registro-modal-exito__titulo" id="exito-titulo">¡Caso radicado exitosamente!</h2>
+            <p class="registro-modal-exito__radicado" id="exito-radicado"></p>
+            <p class="registro-modal-exito__desc">
+              Hemos enviado un correo de confirmación con los detalles de su caso.
+              Nuestro equipo lo contactará según los tiempos establecidos por la Superintendencia Financiera de Colombia.
+            </p>
+            <button type="button" class="btn-radicar" id="btn-nuevo-caso">
+              Radicar otro caso
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- FOOTER PÚBLICO -->
+    <footer class="registro-footer-pagina" role="contentinfo">
+      <p>© 2026 CoopFinanzas. Sistema FPQRS — Normativa SFC Colombia</p>
+      <p>¿Necesita ayuda? Llame al <a href="tel:018000123456" class="registro-link">01 8000 123 456</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../shared/js/data.js"></script>
+    <script src="../../shared/js/validations.js"></script>
+    <script src="fpqrs-register.js"></script>
   </body>
 </html>

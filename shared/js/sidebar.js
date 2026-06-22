@@ -113,20 +113,29 @@ const navegacionSidebar = {
 function construirLinkHabilitado(link, carpetaActiva) {
   const esActivo = link.carpeta === carpetaActiva;
   const claseActiva = esActivo ? "sidebar-link-activo" : "";
-  const ariaActual = esActivo ? 'aria-current="page"' : ""; // Solo la página actual tiene aria-current="page", para accesibilidad, otorgado por clases CSS de bootstrap.
+  const ariaActual = esActivo ? 'aria-current="page"' : "";
 
   const badgeHTML = link.badge
     ? `<span class="sidebar-badge">${link.badge}</span>`
     : "";
 
-  // La ruta es siempre "subir un nivel, entrar a la carpeta destino"
-  // porque las 4 páginas viven todas en /pages/<carpeta>/
   const ruta = `../${link.carpeta}/${link.archivo}`;
+
+  // Reemplazo de los Bootstrap Icons (bi) por los SVGs de Lucide del prototipo para fidelidad total
+  let iconSVG = "";
+  if (link.archivo === "cases-tray.html") {
+    iconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder-open" aria-hidden="true"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"></path></svg>`;
+  } else if (link.archivo === "cases-details.html") {
+    iconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>`;
+  } else if (link.archivo === "fpqrs-register.html") {
+    iconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-checks" aria-hidden="true"><path d="M13 5h8"></path><path d="M13 12h8"></path><path d="M13 19h8"></path><path d="m3 17 2 2 4-4"></path><path d="m3 7 2 2 4-4"></path></svg>`;
+  }
 
   return `
     <li>
-      <a href="${ruta}" class="sidebar-link ${claseActiva}" ${ariaActual}>
-        <span>${link.texto}</span>
+      <a href="${ruta}" class="sidebar-link text-decoration-none ${claseActiva}" ${ariaActual}>
+        <span class="sidebar-icon-wrapper">${iconSVG}</span>
+        <span class="sidebar-link-texto-interno">${link.texto}</span>
         ${badgeHTML}
       </a>
     </li>
@@ -278,16 +287,12 @@ function activarToggleResponsive() {
 
      renderSidebar('bandeja-casos');
      renderUsuarioSidebar();
-   -------------------------------------------- */
-function renderSidebar(carpetaActiva) {
+   -------------------------------------------- */ 
+function renderSidebar(carpetaActiva,) {
   const html = `
     <div class="sidebar-logo-fila">
       <img src="../../assets/img/logo-prototipo.png" alt="" width="32" height="32" class="sidebar-logo-img">
       <span class="sidebar-logo-texto">GestorFPQRS</span>
- 
-      <button type="button" id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Contraer u ocultar menú de navegación" aria-expanded="true" aria-controls="sidebar">
-        <i class="bi bi-chevron-left" aria-hidden="true"></i>
-      </button>
     </div>
  
     <nav id="sidebar" aria-label="Navegación principal">
@@ -296,6 +301,10 @@ function renderSidebar(carpetaActiva) {
  
       <div id="sidebar-usuario-contenedor"></div>
     </nav>
+
+    <button type="button" id="sidebar-toggle" class="sidebar-toggle-btn-flotante" aria-label="Contraer u ocultar menú de navegación" aria-expanded="true" aria-controls="sidebar">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+    </button>
   `;
 
   $("#sidebar-contenedor").html(html);
