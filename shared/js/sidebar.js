@@ -354,13 +354,34 @@ function activarFuncionalidadColapsar() {
 
   // Abrir sidebar en mobile
   $(document).on("click", "#btn-hamburguesa", function () {
-    $("#sidebar-contenedor").addClass("sidebar-mobile-abierto");
+    const $s = $("#sidebar-contenedor");
+    // Forzar visibilidad via style directo por si algún CSS lo oculta
+    $s.css({
+      display: "flex",
+      "flex-direction": "column",
+      position: "fixed",
+      top: "0",
+      left: "0",
+      width: "240px",
+      height: "100vh",
+      "z-index": "1040",
+      transform: "translateX(0)",
+      transition: "transform 0.25s ease",
+      "box-shadow": "4px 0 20px rgba(0,0,0,0.3)",
+    });
+    $s.addClass("sidebar-mobile-abierto");
     $("#sidebar-overlay").addClass("activo");
   });
 
   // Cerrar sidebar al tocar el overlay
   $(document).on("click", "#sidebar-overlay", function () {
-    $("#sidebar-contenedor").removeClass("sidebar-mobile-abierto");
+    const $s = $("#sidebar-contenedor");
+    $s.css("transform", "translateX(-100%)");
+    $s.css("box-shadow", "none");
+    setTimeout(function () {
+      $s.removeClass("sidebar-mobile-abierto");
+      $s.css({ transform: "", "box-shadow": "" });
+    }, 250);
     $("#sidebar-overlay").removeClass("activo");
   });
 }
