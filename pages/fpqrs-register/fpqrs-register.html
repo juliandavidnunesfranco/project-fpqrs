@@ -81,14 +81,17 @@
           <!-- ============================================
                SECCIÓN 1: Datos personales
                ============================================ -->
-          <fieldset class="registro-seccion">
-            <legend class="registro-seccion__legend">
-              <i class="bi bi-person registro-seccion__icono" aria-hidden="true"></i>
+          <div class="registro-seccion" role="group" aria-labelledby="legend-datos-personales">
+            <div class="registro-seccion__header">
+              <div class="registro-seccion__icono-wrap">
+                <i class="bi bi-person" aria-hidden="true"></i>
+              </div>
               <div>
-                <span class="registro-seccion__titulo">Datos personales</span>
+                <span class="registro-seccion__titulo" id="legend-datos-personales">Datos personales</span>
                 <span class="registro-seccion__desc">Información del asociado que registra el caso</span>
               </div>
-            </legend>
+            </div>
+            <div class="registro-seccion__body">
 
             <div class="registro-grid-2">
               <div class="registro-campo">
@@ -189,20 +192,23 @@
                 autocomplete="street-address"
               />
             </div>
-
-          </fieldset>
+            </div><!-- /registro-seccion__body -->
+          </div><!-- /registro-seccion -->
 
           <!-- ============================================
                SECCIÓN 2: Datos del caso
                ============================================ -->
-          <fieldset class="registro-seccion">
-            <legend class="registro-seccion__legend">
-              <i class="bi bi-briefcase registro-seccion__icono" aria-hidden="true"></i>
+          <div class="registro-seccion" role="group" aria-labelledby="legend-datos-caso">
+            <div class="registro-seccion__header">
+              <div class="registro-seccion__icono-wrap">
+                <i class="bi bi-briefcase" aria-hidden="true"></i>
+              </div>
               <div>
-                <span class="registro-seccion__titulo">Datos del caso</span>
+                <span class="registro-seccion__titulo" id="legend-datos-caso">Datos del caso</span>
                 <span class="registro-seccion__desc">Describa detalladamente su solicitud para una atención más ágil</span>
               </div>
-            </legend>
+            </div>
+            <div class="registro-seccion__body">
 
             <div class="registro-grid-2">
               <div class="registro-campo">
@@ -280,20 +286,23 @@
               ></textarea>
               <div class="invalid-feedback"></div>
             </div>
-
-          </fieldset>
+            </div><!-- /registro-seccion__body -->
+          </div><!-- /registro-seccion -->
 
           <!-- ============================================
                SECCIÓN 3: Documentos de soporte
                ============================================ -->
-          <fieldset class="registro-seccion">
-            <legend class="registro-seccion__legend">
-              <i class="bi bi-paperclip registro-seccion__icono" aria-hidden="true"></i>
+          <div class="registro-seccion" role="group" aria-labelledby="legend-documentos">
+            <div class="registro-seccion__header">
+              <div class="registro-seccion__icono-wrap">
+                <i class="bi bi-paperclip" aria-hidden="true"></i>
+              </div>
               <div>
-                <span class="registro-seccion__titulo">Documentos de soporte</span>
+                <span class="registro-seccion__titulo" id="legend-documentos">Documentos de soporte</span>
                 <span class="registro-seccion__desc">Adjunte capturas de pantalla, comprobantes u otros documentos que respalden su caso (máx. 5 archivos, 5 MB c/u)</span>
               </div>
-            </legend>
+            </div>
+            <div class="registro-seccion__body">
 
             <!-- Zona de drag & drop -->
             <div
@@ -322,8 +331,8 @@
             <!-- Lista de archivos seleccionados -->
             <ul id="lista-archivos" class="registro-archivos-lista" aria-label="Archivos seleccionados" aria-live="polite"></ul>
             <p id="error-archivos" class="registro-error-archivos" role="alert" aria-live="assertive"></p>
-
-          </fieldset>
+            </div><!-- /registro-seccion__body -->
+          </div><!-- /registro-seccion -->
 
           <!-- ============================================
                AUTORIZACIÓN DE DATOS
